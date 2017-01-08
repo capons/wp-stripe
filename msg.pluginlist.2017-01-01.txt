@@ -1,0 +1,125 @@
+------------------------------------------------------------
+  Plugin list generated with BackWPup version: 3.3.4
+  http://backwpup.com
+  Blog Name: Music Supervisor Guide
+  Blog URL: http://musicsupervisorguide.com
+  Generated on: 2017-01-01 03:04.04
+------------------------------------------------------------
+
+
+All plugin information:
+------------------------------
+AddToAny Share Buttons (v.1.7.2) from AddToAny
+	https://www.addtoany.com/
+Akismet (v.3.2) from Automattic
+	https://akismet.com/
+Autoptimize (v.2.1.0) from Frank Goossens (futtta)
+	http://blog.futtta.be/autoptimize
+BackWPup (v.3.3.4) from Inpsyde GmbH
+	http://backwpup.com
+Bookly (v.12.0) from Ladela Interactive
+	http://booking-wp-plugin.com
+Contact Form 7 (v.4.6) from Takayuki Miyoshi
+	http://contactform7.com/
+Duplicate Post (v.3.1.2) from Enrico Battocchi
+	http://lopo.it/duplicate-post-plugin/
+Facebook Comments Plugin (v.2.3.6) from talspotim
+	
+Facebook Like & Share Button (v.1.1.3) from Alex Moss
+	http://peadig.com/wordpress-plugins/facebook-like-share-button/
+GetSiteControl Widgets (v.1.2.2) from getsitecontrol
+	https://getsitecontrol.com/
+Google Content Experiments (v.1.0.3) from Glenn Mulleners
+	
+Google Tag Manager for Wordpress (v.1.5.1) from Thomas Geiger
+	https://duracelltomi.com/google-tag-manager-for-wordpress/
+Hello Dolly (v.1.6) from Matt Mullenweg
+	http://wordpress.org/plugins/hello-dolly/
+Inspectlet - User Session Recording and Heatmaps (v.1.0) from Inspectlet
+	http://www.inspectlet.com
+NXD Just a code (v.1.0) from 
+	
+NXD Subscribe Form (v.1.0) from 
+	
+Page Specific Menu Items (v.1.6.5) from Dharma Poudel (@rogercomred)
+	http://www.wordpress.org/plugins
+Quick Page/Post Redirect Plugin (v.5.1.8) from anadnet
+	http://www.anadnet.com/quick-pagepost-redirect-plugin/
+Raw HTML (v.1.5) from Janis Elsts
+	http://w-shadow.com/blog/2007/12/13/raw-html-in-wordpress/
+Revolution Slider (v.4.6.5) from ThemePunch
+	http://www.themepunch.com/revolution/
+Salient Visual Composer (v.4.12.1) from Michael M - WPBakery.com | Modified by ThemeNectar
+	http://vc.wpbakery.com
+Scarcity Builder (v.2.2.13) from Mark Thompson - Digital Kickstart
+	http://scarcitybuilder.com/
+SparkPost (v.2.5.0) from SparkPost
+	http://sparkpost.com/
+Thrive Leads (v.1.95.5) from <a href="https://thrivethemes.com">Thrive Themes</a>
+	https://thrivethemes.com
+Thrive Ultimatum (v.1.5.5) from <a href="https://thrivethemes.com">Thrive Themes</a>
+	https://thrivethemes.com
+Timed Content (v.2.6) from K. Tough
+	http://wordpress.org/plugins/timed-content/
+W3 Total Cache (v.0.9.5.1) from Frederick Townes
+	https://www.w3-edge.com/wordpress-plugins/w3-total-cache/
+Webinar Ignition (v.1.9.58) from Mark Thompson, and Dylan Jones
+	
+WooCommerce (v.2.6.11) from WooThemes
+	https://woocommerce.com/
+WordPress Importer (v.0.6.3) from wordpressdotorg
+	http://wordpress.org/extend/plugins/wordpress-importer/
+WP-Ban (v.1.69) from Lester 'GaMerZ' Chan
+	https://lesterchan.net/portfolio/programming/php/
+WP-Optimize (v.2.1.0) from David Anderson, Ruhani Rabin, Team Updraft
+	http://updraftplus.com
+WP Retina 2x (v.4.7.6) from Jordy Meow
+	http://meowapps.com
+WP Robots Txt (v.1.1) from Christopher Davis
+	https://github.com/chrisguitarguy/WP-Robots-Txt
+WP Smush (v.2.5.2) from WPMU DEV
+	http://wordpress.org/extend/plugins/wp-smushit/
+Yoast SEO (v.4.0.2) from Team Yoast
+	https://yoast.com/wordpress/plugins/seo/#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wpseoplugin
+
+Active plugins:
+------------------------------
+AddToAny Share Buttons
+BackWPup
+Bookly
+Duplicate Post
+Facebook Comments Plugin
+Facebook Like & Share Button
+Google Tag Manager for Wordpress
+NXD Just a code
+NXD Subscribe Form
+Page Specific Menu Items
+Quick Page/Post Redirect Plugin
+Raw HTML
+Revolution Slider
+Salient Visual Composer
+SparkPost
+Thrive Leads
+Thrive Ultimatum
+Timed Content
+Webinar Ignition
+WordPress Importer
+WP-Ban
+WP-Optimize
+WP Retina 2x
+WP Robots Txt
+WP Smush
+Yoast SEO
+
+Inactive plugins:
+------------------------------
+Akismet
+Autoptimize
+Contact Form 7
+GetSiteControl Widgets
+Google Content Experiments
+Hello Dolly
+Inspectlet - User Session Recording and Heatmaps
+Scarcity Builder
+W3 Total Cache
+WooCommerce

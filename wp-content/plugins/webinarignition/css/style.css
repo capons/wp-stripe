@@ -1,0 +1,57 @@
+.section--ar_fields{font-size:0px}.section--ar_fields input,.section--ar_fields textarea,.section--ar_fields select{width:100%;border:1px solid #DFDFDF !important;color:#333;font-weight:bold;-webkit-box-shadow:0 0 0 3px rgba(0,0,0,0.03) !important;-moz-box-shadow:0 0 0 3px rgba(0,0,0,0.03) !important;box-shadow:0 0 0 3px rgba(0,0,0,0.03) !important;outline:none;padding:4px 8px;height:28px}.section--ar_fields input:focus,.section--ar_fields textarea:focus,.section--ar_fields select:focus{border:1px solid #d1b8a7;background-color:#ffffe9;color:#6a341d}.section--ar_fields .wi__ar_section{display:inline-block;vertical-align:top;font-size:14px}.section--ar_fields .wi__ar_section h2{font-size:16px;font-weight:700}.section--ar_fields .wi__ar_section.extracted-form_fields{width:300px}.section--ar_fields .wi__ar_section.form_builder{width:540px;margin-left:20px}.section--ar_fields .wi-form-builder{margin:0;padding:0 0 10px 0}.section--ar_fields .wi-form-builder:empty:before{padding:20px;content:"No fields added. You can add fields from the left.";display:block;color:#000;font-size:12px;background:#e5e5e5;border-radius:2px}.section--ar_fields .wi-form-builder .wi-form-fieldblock{margin-bottom:16px}.section--ar_fields .wi-form-fields--hidden .fieldblock__content:empty:before{padding:20px;content:"No  hidden fields added. You can add fields from the left.";display:block;color:#000;font-size:12px;background:#e5e5e5;border-radius:2px}.section--ar_fields .wi-form-fields--hidden .fieldblock__content:empty+.field__actions{display:none}.section--ar_fields .wi-form-field{background:#0074A2;border-radius:4px;color:#FFF;padding:10px;min-height:30px;margin-bottom:6px}.section--ar_fields .wi-form-field.wi-form-field--hidden{opacity:0.8}.section--ar_fields .wi-field-add,.section--ar_fields .wi-field-set{padding:4px 10px;font-weight:700;font-size:12px;float:right;background:#5FA426;cursor:pointer;border-radius:2px}.section--ar_fields .wi-field-add:hover,.section--ar_fields .wi-field-set:hover{background:#E64F1D}.section--ar_fields .field-block label{color:#E64F1D;font-size:10px;font-weight:700;text-transform:uppercase}.section--ar_fields .field-block .sublabel{color:#777;border:1px solid #ccc;border-bottom:none;padding:2px 4px;margin-left:6px;border-radius:2px;position:relative;bottom:-2px;text-transform:uppercase;font-size:10px;font-weight:700}.section--ar_fields .field__wrapper{position:relative}.section--ar_fields .field__wrapper input,.section--ar_fields .field__wrapper textarea,.section--ar_fields .field__wrapper select{position:relative;z-index:1000}.section--ar_fields .field__wrapper .auto-set-field{position:absolute;z-index:500;right:0;top:0;font-size:10px;text-transform:uppercase}.section--ar_fields .field-block--cell{display:table-cell;padding-right:6px}.section--ar_fields .field-block--cell:last-child{padding-right:0}.section--ar_fields .field-block--form-action{width:90%}.section--ar_fields .field-block--form-method select{width:80px}.section--ar_fields .field__actions{padding-left:10px}.section--ar_fields .field__action{text-decoration:none;text-transform:uppercase;font-size:11px;font-weight:700;margin-right:6px}.section--ar_fields .field__action.field__action--remove{color:red}.section--ar_fields .field__action.field__action--move{cursor:move}
+.pagination {
+    float: right;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* line 412, f:/SHIRO/Cloud/Work/DigitalKickStart/rebrand/AppManager/source/stylesheets/styles.css.sass */
+.pagination a, .pagination strong {
+    background: white;
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    line-height: 1.5em;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 14px;
+    color: #212121;
+}
+
+/* line 422, f:/SHIRO/Cloud/Work/DigitalKickStart/rebrand/AppManager/source/stylesheets/styles.css.sass */
+.pagination a:hover {
+    background-color: #121212;
+    color: white;
+}
+
+/* line 425, f:/SHIRO/Cloud/Work/DigitalKickStart/rebrand/AppManager/source/stylesheets/styles.css.sass */
+.pagination a:active {
+    background: rgba(190, 190, 190, 0.2);
+}
+
+/* line 427, f:/SHIRO/Cloud/Work/DigitalKickStart/rebrand/AppManager/source/stylesheets/styles.css.sass */
+.pagination strong {
+    color: white;
+    background-color: #E64F1D;
+}
+#we_view_log table {
+    margin-bottom: 15px;
+    width: 100%;
+}
+#we_view_log table td,
+#we_view_log table th {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 6px 12px;
+}
+#we_view_log table th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    color: #303030;
+}
+#we_view_log table td:nth-child(odd),
+#we_view_log table th:nth-child(odd) {
+    vertical-align: top;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    width: 110px;
+    text-align: center;
+}

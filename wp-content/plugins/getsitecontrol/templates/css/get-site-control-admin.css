@@ -1,0 +1,237 @@
+.mt20 {
+    margin-top: 20px;
+}
+
+.toplevel_page_getsitecontrol .wp-menu-image img {
+    width: 16px;
+    height: 16px;
+}
+
+.toplevel_page_getsitecontrol .wp-first-item {
+    display: none !important;
+}
+
+.get-site-control:after, .get-site-control .clear {
+    content:"";
+    display:table;
+    clear:both
+}
+
+.get-site-control .tool-box {
+    margin-right: 40px;
+    float: left;
+    max-width: 520px;
+}
+
+.get-site-control .tool-box.full-width {
+    width: 100%;
+    float: none;
+    margin: 0;
+    max-width: none;
+}
+
+.get-site-control .tool-box.site-select-single{
+    margin-top:42px;
+}
+
+.get-site-control h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.get-site-control .form-group {
+    margin-bottom: 40px;
+}
+
+.get-site-control .control-label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.get-site-control .form-control {
+    display: block;
+    font-size: 16px;
+    line-height: 1.375 !important;
+    color: #333;
+    width: 100%;
+    max-width: 495px;
+    height: 52px !important;
+    padding: 8px 10px !important;
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+}
+
+.get-site-control .form-control:focus {
+    border-color: #80c89b !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.get-site-control .form-control.placeholder, .get-site-control .form-control:-moz-placeholder, .get-site-control .form-control::-moz-placeholder, .get-site-control .form-control:-ms-input-placeholder, .get-site-control .form-control::-webkit-input-placeholder  {
+    color: #999
+}
+
+.get-site-control .submit-block {
+    display: inline-block;
+    width: 130px;
+    margin-right: 24px;
+    font-size: 16px;
+}
+
+.get-site-control .alternative-block {
+    display: inline-block;
+    vertical-align: middle;
+    height: 58px;
+}
+
+.get-site-control .alternative-block .sign-in, .get-site-control .alternative-block .create-account {
+    font-size: 16px;
+}
+
+.get-site-control .alternative-block .sign-in {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.get-site-control .button-primary {
+    padding: 15px 35px;
+    font-size: 16px;
+    height: auto;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.get-site-control .validation-container {
+    margin-top: 10px;
+}
+
+.get-site-control .validation-container .validation-message {
+    display: none;
+    color: #f16645;
+}
+
+.get-site-control .form-group .validation-container .validation-message.show {
+    display: block;
+}
+
+.get-site-control .general-validation-message {
+    color: #f16645;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid #f16645;
+    padding: 5px;
+}
+
+
+.get-site-control .has-error .control-label, .get-site-control .has-error .radio, .get-site-control .has-error .checkbox, .get-site-control .has-error .radio-inline, .get-site-control .has-error .checkbox-inline {
+    color: #f16645 !important;
+}
+
+.get-site-control .has-error .form-control {
+    border-color: #f16645 !important;
+}
+
+.get-site-control .has-error .form-control:focus {
+    border-color: #f16645 !important;
+    outline: 0 !important;
+}
+
+.get-site-control .advert {
+    float:left;
+    margin:0;
+    padding: 25px 0 0 0;
+    list-style-type:none;
+    max-width: 520px;
+}
+
+.get-site-control .advert li {
+    height: 110px;
+    margin-bottom: 12px;
+}
+
+.get-site-control .advert-icon {
+    display:block;
+    width:62px;
+    height:62px;
+    float:left;
+    background-image:url('../images/site_sign_up_icon.png');
+    background-size: 62px 186px
+}
+
+.get-site-control .advert-icon.free {
+    background-position:0 0
+}
+
+.get-site-control .advert-icon.payment {
+    background-position:0 -62px
+}
+
+.get-site-control .advert-icon.upgrade {
+    background-position:0 -124px
+}
+
+.get-site-control .advert-description {
+    padding-left: 90px;
+    font-size: 16px;
+    line-height: 130%;
+}
+
+.get-site-control .select-widget {
+    width: 320px;
+    float: left;
+    margin-right: 20px;
+}
+
+.get-site-control .add-site {
+    padding: 12px 35px;
+}
+
+@media (max-width: 1183px) {
+    .get-site-control .submit-block {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 665px) {
+    .get-site-control .tool-box {
+        width: 100%;
+        margin: 0 0 60px;
+    }
+
+    .get-site-control .advert {
+        width: 100%;
+        margin: 0 25px 0 0;
+        padding: 0;
+    }
+
+    .get-site-control .advert li {
+        min-height: 70px;
+        margin-bottom: 20px;
+        height: auto;
+    }
+}
+
+@media (max-width: 499px) {
+    .get-site-control .form-group {
+        width: 100%;
+    }
+
+    .get-site-control .select-widget {
+        float: none;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .get-site-control .button-primary {
+        width: 100%;
+    }
+}
+
+@media all and (-webkit-min-device-pixel-ratio:1.5),all and (-o-min-device-pixel-ratio:3 / 2),all and (min--moz-device-pixel-ratio:1.5),all and (min-device-pixel-ratio:1.5) {
+    .get-site-control .advert-icon {
+        background-image:url('../images/site_sign_up_icon@2x.png');
+        background-size: 62px 186px
+    }
+}
