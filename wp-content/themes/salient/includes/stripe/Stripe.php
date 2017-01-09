@@ -7,6 +7,7 @@ class Stripe
 
     function __construct()
     {   //my token sk_test_Pmtiqut8msdIXyyZqGniDvBy
+        //client -> sk_test_qy8CtMDg5OWhtrLbDFIUhV7c
         $this->headers = array('Authorization: Bearer ' . 'sk_test_qy8CtMDg5OWhtrLbDFIUhV7c'); // STRIPE_API_KEY = your stripe api key
     }
     //create customer in Stripe system!
@@ -58,6 +59,22 @@ class Stripe
 
         return json_decode($output, true); // return php array with api response
     }
+
+    //update subscription
+    function subscriptionUpdate($data) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($output, true); // return php array with api response
+    }
+
     //create plan
     function createPlan($data)
     {

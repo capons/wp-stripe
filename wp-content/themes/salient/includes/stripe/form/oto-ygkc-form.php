@@ -1,6 +1,7 @@
 <!--my token ->>>  pk_test_jgmwLo0RtxV342m0e5sfmxwY -->
+<!--client token ->> pk_test_Oxm6sN3ADQ2kN69GfpfBwOGK  -->
 <form style="display: none" action="" method="POST">
-    <input type="hidden" name="redirect" value="/">
+    <input type="hidden" name="redirect" value="/congratulations/">
     <input type="hidden" name="page_type" value="oto-ygkc">
     <input type="hidden" name='amount' value="19888">
     <script

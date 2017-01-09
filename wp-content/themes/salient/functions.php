@@ -5161,6 +5161,13 @@ if(empty($options['product_tab_position']) || $options['product_tab_position'] =
 	add_action( 'woocommerce_after_single_product_summary', 'nectar_woo_clearfix', 7 );
 }
 
+//SESSION START
+add_action('init', 'myStartSession', 1);
+function myStartSession() {
+	if(!session_id()) {
+		session_start();
+	}
+}
 
 //Stripe payment request catch
 function strip_request_catch() {
@@ -5170,15 +5177,17 @@ function strip_request_catch() {
 	if ( isset( $_POST['stripeEmail'] ) ) {
 
 
-		//create customer
-		$cus = new Stripe();
-		$cus->url .= 'customers';
-		$cus->fields['email'] = $_POST['stripeEmail'];
-		$cus->fields['source'] = $_POST['stripeToken'];
-		$customer = $cus->call();
+
 
 
 		if ($_POST['page_type'] == 'join-kc') {
+
+			//create customer
+			$cus = new Stripe();
+			$cus->url .= 'customers';
+			$cus->fields['email'] = $_POST['stripeEmail'];
+			$cus->fields['source'] = $_POST['stripeToken'];
+			$customer = $cus->call();
 
 			//config plan
 		//	$plan_id = 'test plan'; //id check isset plan or no
@@ -5251,8 +5260,12 @@ function strip_request_catch() {
 							"customer" => $customer['id']
 						);
 						$response = $sub->subscription($data);
+
+
 						if (isset($response['id'])) {
 
+							//if sybscription create -> put description id to $_SESSION -> need in next step
+							$_SESSION['pp_users']['stripe']['subscription'] = $response;
 
 							//if payment Successfully
 							?>
@@ -5277,93 +5290,189 @@ function strip_request_catch() {
 			//	$plan_name = 'my test plan';
 			$plan_id = 'oto-gqkc';
 			$plan_name = 'Basic oto-gqkc';
-			$amount_plan = 1888;
+			$amount_plan = 5776;
+			$subscription_id = $_POST['sub_id'];
 
 
 			$redirect = $_POST['redirect'];
 
-			if (isset($customer['id'])) {
+				//if subscription isset
+				if(!empty($subscription_id)) {
 
-				$new_plan = new Stripe();
-				//check if plane exist
-				$check_plan = $new_plan->getPlan($plan_id);
+					$new_plan = new Stripe();
+					//check if plane exist
+					$check_plan = $new_plan->getPlan($plan_id);
 
-				if (isset($check_plan['error'])) {
-					$new_plan->url .= 'plans';
-					$plan_data = array(
-						"name" => $plan_name,
-						"id" => $plan_id,
-						"interval" => "month",
-						"currency" => "usd",
-						"amount" => $amount_plan,
-					);
-					//create new plan
-					$plan = $new_plan->createPlan($plan_data);
-
-
-					if (isset($plan['id'])) {
-						//create new subscription
-						$sub = new Stripe();
-						$sub->url .= 'subscriptions';
-						$data = array(
-							"plan" => $plan_id,
-							"customer" => $customer['id']
+					if (isset($check_plan['error'])) {
+						//if no plan -> create new
+						$new_plan->url .= 'plans';
+						$plan_data = array(
+							"name" => $plan_name,
+							"id" => $plan_id,
+							"interval" => "month",
+							"currency" => "usd",
+							"amount" => $amount_plan,
 						);
-						$response = $sub->subscription($data);
-						if (isset($response['id'])) {
+						//create new plan
+						$plan = $new_plan->createPlan($plan_data);
 
 
-							//redirect if Payment Successfully
-							?>
-							<script type="text/javascript">
-								var base_url = "<?php echo get_site_url(); ?>";
-								var uri = "<?php echo $redirect; ?>";
-								window.location.href = base_url + uri;
-							</script>
-							<?php
+						if (isset($plan['id'])) {
 
+							$new_sub = new Stripe();
+							$new_sub->url .= 'subscriptions/' . $subscription_id;
+							$sub_param = array(
+								"plan" => $plan_id
+							);
+							$update_subscription = $new_sub->subscriptionUpdate($sub_param);
 
-						} else {
-
-							//if payment fals ->>>> do log #response
-							//
+							//if plan update successfully
+							if(isset($update_subscription['id'])){
+								//desctroy Stripe subscription session
+								unset($_SESSION['pp_users']['stripe']['subscription']);
+								?>
+								<script type="text/javascript">
+									var base_url = "<?php echo get_site_url(); ?>";
+									var uri = "<?php echo $redirect; ?>";
+									window.location.href = base_url + uri;
+								</script>
+								<?php
+							} else {
+								//if plan update fail
+								//log error in $update_subscription
+							}
 						}
+					} else {
+						//if plan exist
+						if (isset($check_plan['id'])) {
+							$new_sub = new Stripe();
+							$new_sub->url .= 'subscriptions/' . $subscription_id;
+							$sub_param = array(
+								"plan" => $check_plan['id']//$plan_id
+							);
+							$update_subscription = $new_sub->subscriptionUpdate($sub_param);
 
+							//if plan update successfully
+							if(isset($update_subscription['id'])){
+								//desctroy Stripe subscription session
+								unset($_SESSION['pp_users']['stripe']['subscription']);
+								?>
+								<script type="text/javascript">
+									var base_url = "<?php echo get_site_url(); ?>";
+									var uri = "<?php echo $redirect; ?>";
+									window.location.href = base_url + uri;
+								</script>
+								<?php
+							} else {
+								//if plan update fail
+								//log error in $update_subscription
+							}
+						}
 					}
-
 
 				} else {
+					//if subscription do not exist
+					//create new subscription
 
-					// if plan exist
-					if (isset($check_plan['id'])) {
-						$sub = new Stripe();
-						$sub->url .= 'subscriptions';
-						$data = array(
-							"plan" => $check_plan['id'],
-							"customer" => $customer['id']
+					//create customer
+					$cus = new Stripe();
+					$cus->url .= 'customers';
+					$cus->fields['email'] = $_POST['stripeEmail'];
+					$cus->fields['source'] = $_POST['stripeToken'];
+					$customer = $cus->call();
+
+
+					//check if plane exist
+					$new_plan = new Stripe();
+					$check_plan = $new_plan->getPlan($plan_id);
+
+					if (isset($check_plan['error'])) {
+						$new_plan->url .= 'plans';
+						$plan_data = array(
+							"name" => $plan_name,
+							"id" => $plan_id,
+							"interval" => "month",
+							"currency" => "usd",
+							"amount" => $amount_plan,
 						);
-						$response = $sub->subscription($data);
-						if (isset($response['id'])) {
+						//create new plan
+						$plan = $new_plan->createPlan($plan_data);
 
 
-							//if payment Successfully
-							?>
-							<script type="text/javascript">
-								var base_url = "<?php echo get_site_url(); ?>";
-								var uri = "<?php echo $redirect; ?>";
-								window.location.href = base_url + uri;
-							</script>
-							<?php
+						if (isset($plan['id'])) {
+							//create new subscription
+							$sub = new Stripe();
+							$sub->url .= 'subscriptions';
+							$data = array(
+								"plan" => $plan_id,
+								"customer" => $customer['id']
+							);
+							$response = $sub->subscription($data);
+							if (isset($response['id'])) {
 
-						} else {
-							//if payment fals ->>> do log file or message $response
+
+								//redirect if Payment Successfully
+								?>
+								<script type="text/javascript">
+									var base_url = "<?php echo get_site_url(); ?>";
+									var uri = "<?php echo $redirect; ?>";
+									window.location.href = base_url + uri;
+								</script>
+								<?php
+
+
+							} else {
+
+								//if payment fals ->>>> do log #response
+								//
+							}
 
 						}
+
+
+					} else {
+
+						// if plan exist
+						if (isset($check_plan['id'])) {
+							$sub = new Stripe();
+							$sub->url .= 'subscriptions';
+							$data = array(
+								"plan" => $check_plan['id'],
+								"customer" => $customer['id']
+							);
+							$response = $sub->subscription($data);
+
+
+							if (isset($response['id'])) {
+
+
+								//if payment Successfully
+								?>
+								<script type="text/javascript">
+									var base_url = "<?php echo get_site_url(); ?>";
+									var uri = "<?php echo $redirect; ?>";
+									window.location.href = base_url + uri;
+								</script>
+								<?php
+
+							} else {
+								//if payment fals ->>> do log file or message $response
+
+							}
+						}
 					}
+
+
 				}
-			}
+
 		} else if($_POST['page_type'] == 'oto-ygkc') {
 
+			//create customer
+			$cus = new Stripe();
+			$cus->url .= 'customers';
+			$cus->fields['email'] = $_POST['stripeEmail'];
+			$cus->fields['source'] = $_POST['stripeToken'];
+			$customer = $cus->call();
 
 			$pay = new Stripe();
 			$pay->url .= 'charges';
