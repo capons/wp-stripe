@@ -3,7 +3,9 @@ $(document).ready(function(){
     $('a.nectar-button').click(function(e){
         e.preventDefault();
         $("a.nectar-button").removeAttr("href");
-        $('.stripe-button-el').click(); // open Stripe pay window
+        $('.stripe_f .stripe-button-el').click(); // open Stripe pay window
+        $('#stripe_upsell').click();
+       // console.log('click form');
     })
 });
 
