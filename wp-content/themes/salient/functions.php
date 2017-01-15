@@ -5248,7 +5248,8 @@ function strip_request_catch() {
 							$sub->url .= 'subscriptions';
 							$data = array(
 								"plan" => $plan_id,
-								"customer" => $customer['id']
+								"customer" => $customer['id'],
+								"trial_period_days" => 30
 							);
 							$response = $sub->subscription($data);
 							if (isset($response['id'])) {
@@ -5343,10 +5344,11 @@ function strip_request_catch() {
 							"interval" => "month",
 							"currency" => "usd",
 							"amount" => $amount_plan,
-							"trial_end" => time()+2592000, //one month
+							"trial_period_days" => 30
 						);
 						//create new plan
 						$plan = $new_plan->createPlan($plan_data);
+
 
 
 						if (isset($plan['id'])) {
@@ -5354,7 +5356,8 @@ function strip_request_catch() {
 							$new_sub = new Stripe();
 							$new_sub->url .= 'subscriptions/' . $subscription_id;
 							$sub_param = array(
-								"plan" => $plan_id
+								"plan" => $plan_id,
+								"trial_end" => time()+2592000, //one month
 							);
 							$update_subscription = $new_sub->subscriptionUpdate($sub_param);
 
@@ -5384,6 +5387,7 @@ function strip_request_catch() {
 								"trial_end" => time()+2592000, //one month
 							);
 							$update_subscription = $new_sub->subscriptionUpdate($sub_param);
+
 
 							//if plan update successfully
 							if(isset($update_subscription['id'])){
@@ -5429,6 +5433,7 @@ function strip_request_catch() {
 							"interval" => "month",
 							"currency" => "usd",
 							"amount" => $amount_plan,
+							"trial_period_days" => 30
 						);
 						//create new plan
 						$plan = $new_plan->createPlan($plan_data);
@@ -5440,7 +5445,8 @@ function strip_request_catch() {
 							$sub->url .= 'subscriptions';
 							$data = array(
 								"plan" => $plan_id,
-								"customer" => $customer['id']
+								"customer" => $customer['id'],
+								"trial_period_days" => 30
 							);
 							$response = $sub->subscription($data);
 							if (isset($response['id'])) {
@@ -5474,7 +5480,8 @@ function strip_request_catch() {
 							$sub->url .= 'subscriptions';
 							$data = array(
 								"plan" => $check_plan['id'],
-								"customer" => $customer['id']
+								"customer" => $customer['id'],
+								"trial_period_days" => 30
 							);
 							$response = $sub->subscription($data);
 

@@ -8,7 +8,7 @@ class Stripe
     function __construct()
     {   //my token sk_test_Pmtiqut8msdIXyyZqGniDvBy
         //client -> sk_test_qy8CtMDg5OWhtrLbDFIUhV7c
-        $this->headers = array('Authorization: Bearer ' . 'sk_test_qy8CtMDg5OWhtrLbDFIUhV7c'); // STRIPE_API_KEY = your stripe api key
+        $this->headers = array('Authorization: Bearer ' . 'sk_test_Pmtiqut8msdIXyyZqGniDvBy'); // STRIPE_API_KEY = your stripe api key
     }
     //create customer in Stripe system!
     function call()

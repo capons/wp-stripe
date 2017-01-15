@@ -7,12 +7,15 @@
     <input type="hidden" name='sub_amount' value="3888"> <!--subscription -->
     <script
         src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"
-        data-key="pk_test_Oxm6sN3ADQ2kN69GfpfBwOGK"
+        data-key="pk_test_jgmwLo0RtxV342m0e5sfmxwY"
         data-amount="9888"
         data-name="MusicSupervisor"
         data-description="98.88$, after 30 days 38.88$/month"
+        data-shipping-address="true"
         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
         data-locale="auto">
     </script>
+    <!--  data-shipping-address="true" ЕСЛИ ОН ДОБАВИЛ ТО ДОБАВИТЬ У СЕБЯ -->
+
 
 </form>
