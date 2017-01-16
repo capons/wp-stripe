@@ -104,4 +104,20 @@ class Stripe
 
         return json_decode($output, true); // return php array with api response
     }
+
+    //get customer
+    function getCustomer($customerId) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/customers/' . $customerId);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($output, true); // return php array with api response
+    }
+
+
 }

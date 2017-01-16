@@ -5171,8 +5171,10 @@ function myStartSession() {
 
 //Stripe payment request catch
 function strip_request_catch() {
-
+    //load Stripe library
 	require_once locate_template( 'includes/stripe/Stripe.php' );
+	//load library to send Stripe customer payment information
+    require_once locate_template( 'includes/stripe/sendStripeData.php' );
 
 	if ( isset( $_POST['stripeEmail'] ) || isset($_POST['page_type']) ) {
 
@@ -5219,6 +5221,20 @@ function strip_request_catch() {
 
 
 
+
+
+
+
+				//get customer Stripe data and send to API server ->>> to create new user
+                $customerData = $cus->getCustomer($customer['id']);
+				$thirdApi = new sendStripeData();
+				$customerSend = $thirdApi->sendCustomerPayment('test', $customerData);
+				//if customerSend => true --- send data to API request!!!
+
+
+
+
+
 				if (isset($customer['id'])) {
 					//need to create One time payment $amount_plan
 
@@ -5227,7 +5243,7 @@ function strip_request_catch() {
 					$new_plan = new Stripe();
 					//check if plane exist
 					$check_plan = $new_plan->getPlan($plan_id);
-
+                    //if plan not exist
 					if (isset($check_plan['error'])) {
 						$new_plan->url .= 'plans';
 						$plan_data = array(
@@ -5253,7 +5269,6 @@ function strip_request_catch() {
 							);
 							$response = $sub->subscription($data);
 							if (isset($response['id'])) {
-
 
 								//redirect if Payment Successfully
 								?>
@@ -5293,6 +5308,7 @@ function strip_request_catch() {
 
 								//if sybscription create -> put description id to $_SESSION -> need in next step
 								$_SESSION['pp_users']['stripe']['subscription'] = $response;
+
 
 								//if payment Successfully
 								?>

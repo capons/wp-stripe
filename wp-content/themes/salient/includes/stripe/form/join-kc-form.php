@@ -15,7 +15,7 @@
         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
         data-locale="auto">
     </script>
-    <!--  data-shipping-address="true" ЕСЛИ ОН ДОБАВИЛ ТО ДОБАВИТЬ У СЕБЯ -->
+
 
 
 </form>
