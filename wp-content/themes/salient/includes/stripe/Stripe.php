@@ -90,6 +90,22 @@ class Stripe
 
         return json_decode($output, true); // return php array with api response
     }
+
+    //update plan
+    function updatePlan($data, $plan_id) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/plans/'.$plan_id);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($output, true); // return php array with api response
+    }
+
     //get current plan
     function getPlan($plan)
     {
@@ -103,6 +119,19 @@ class Stripe
         curl_close($ch);
 
         return json_decode($output, true); // return php array with api response
+    }
+    //delete plan
+    function deletePlan($plan_id)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/plans/'.$plan_id);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($result, true); // return php array with api response
     }
 
     //get customer

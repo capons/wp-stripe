@@ -5624,6 +5624,25 @@ function test_plugin_setup_menu(){
 function test_init(){
 	global $wpdb;
 
+	//display message and error message
+	$message_success = '';
+	$message_error = '';
+	if(isset($_SESSION['stripe_plugin']['success'])){
+		$message_success = $_SESSION['stripe_plugin']['success'];
+		unset($_SESSION['stripe_plugin']['success']);
+	}
+	if(isset($_SESSION['stripe_plugin']['error'])){
+		$message_error = $_SESSION['stripe_plugin']['error'];
+		unset($_SESSION['stripe_plugin']['error']);
+	}
+	if(!empty($message_success)) {
+		echo "<div class=\"alert alert-success\" role=\"alert\">{$message_success}</div>";
+	}
+	if(!empty($message_error)) {
+		echo "<div class=\"alert alert-danger\" role=\"alert\">{$message_error}</div>";
+	}
+	/* ./*/
+
 	//get Stripe config
 	$stripe_secret = $wpdb->get_row( "SELECT * FROM  wp_stripe_config", ARRAY_A );
 	if(!empty($stripe_secret)){
@@ -5641,7 +5660,7 @@ function test_init(){
 	//$stripe_plan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan", ARRAY_A );
 
 	//Update plan template
-	$update_plan_html = '<table class="table"><tr><td>#</td><td>Plan id</td><td>Plan name</td><td>Plan price</td><td>Plan trial</td><td>Plan page</td><td></td></tr>';
+	$update_plan_html = '<table class="table"><tr><td>#</td><td>Plan name</td><td>Plan trial</td><td>Plan page</td><td></td><td></td></tr>';
 	$i = 1;
 	foreach ($stripe_plan as $k=>$v) {
 		$update_plan_html .= '<tr>
@@ -5649,16 +5668,13 @@ function test_init(){
 						<td>
 						 '.$i.'
 						</td>
+
 						<td>
 							<input type="hidden" name="database_plan_id" value="'.$v->id.'">
-							<input required name="c_plan_id" value="'.$v->plan_id.'">
-						</td>
-						<td>
+							<input type="hidden" name="c_plan_id" value="'.$v->plan_id.'">
 							<input required name="c_plan_name" value="'.$v->plan_name.'">
 						</td>
-						<td>
-							<input required name="c_plan_price" value="'.$v->plan_price.'">
-						</td>
+
 						<td>
 							<input required name="c_plan_trial" value="'.$v->plan_trial.'">
 						</td>
@@ -5667,6 +5683,13 @@ function test_init(){
 						</td>
 						<td>
 							<input type="submit" value="Update">
+						</td>
+					</form>
+					<form action="" method="post">
+						<td>
+							<input type="hidden" name="del_plan_id" value="'.$v->id.'">
+							<input type="hidden" name="del_plan_stripe_id" value="'.$v->plan_id.'">
+							<input type="submit" value="Delete">
 						</td>
 					</form>
 			  </tr>';
@@ -5682,7 +5705,7 @@ function test_init(){
        			<td>Plan name</td>
        			<td>Plan page</td>
        			<td>Plan trial</td>
-       			<td>Add new plan</td>
+       			<td></td>
 			</tr>
 			<tr>
 				<form method="POST">
@@ -5697,6 +5720,62 @@ function test_init(){
 		</table>
 	';
 
+	//add new page price
+	$add_new_price_html = '
+		<table>
+       		<tr>
+       			<td>Fee</td>
+       			<td>Fee description</td>
+       			<td>Page</td>
+       			<td></td>
+			</tr>
+			<tr>
+				<form method="POST">
+					<td><input required name="stripe_pay_amount" value=""></td>
+					<td><input name="stripe_pay_desc" value=""></td>
+					<td><input required name="stripe_pay_page" value=""></td>
+					<td><input value="Add" type="submit"></td>
+				</form>
+			</tr>
+		</table>
+	';
+
+	//all Stripe fee html template (for update)
+	$sql = "SELECT * from wp_stripe_fee";
+	$stripe_fee = $wpdb->get_results($sql);
+	$update_price_html = '<table class="table"><tr><td>#</td><td>Fee</td><td>Description</td><td>Page use</td><td></td><td></td></tr>';
+	foreach ($stripe_fee as $k=>$v) {
+		$update_price_html .= '<tr>
+					<form action="" method="post">
+						<td>
+						 '.$i.'
+						</td>
+
+						<td>
+							<input type="hidden" name="database_fee_id" value="'.$v->id.'">
+							<input required name="c_fee" value="'.$v->fee_amount.'">
+						</td>
+
+						<td>
+							<input required name="c_desc" value="'.$v->description.'">
+						</td>
+						<td>
+							<input required name="c_fee_plan_page" value="'.$v->page_use.'">
+						</td>
+						<td>
+							<input type="submit" value="Update">
+						</td>
+					</form>
+					<form action="" method="post">
+						<td>
+							<input type="hidden" name="del_fee_id" value="'.$v->id.'">
+							<input type="submit" value="Delete">
+						</td>
+					</form>
+			  </tr>';
+		$i++;
+	}
+	$update_price_html .= '</table>';
 
     //display plugin body with html template
     echo "
@@ -5731,14 +5810,14 @@ function test_init(){
 			  <div class=\"panel-body\">
 				<div class=\"panel panel-default\">
 				  <div class=\"panel-heading\">Add new plan</div>
-				  <div class=\"panel-body\">
+				  <div  class=\"panel-body\">
 					{$add_new_plan_html}
 				  </div>
 				</div>
 
 				<div class=\"panel panel-default\">
 				  <div class=\"panel-heading\">Update plans</div>
-				  <div class=\"panel-body\">
+				  <div style=\"overflow:scroll;\" class=\"panel-body\">
 					{$update_plan_html}
 				  </div>
 				</div>
@@ -5755,7 +5834,20 @@ function test_init(){
 			</div>
 			<div id=\"collapseThree\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">
 			  <div class=\"panel-body\">
-				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				<div class=\"panel panel-default\">
+				  <div class=\"panel-heading\">Add price</div>
+				  <div class=\"panel-body\">
+					{$add_new_price_html}
+				  </div>
+				</div>
+			  </div>
+			  <div class=\"panel-body\">
+				<div class=\"panel panel-default\">
+				  <div class=\"panel-heading\">Update price</div>
+				  <div class=\"panel-body\">
+					{$update_price_html}
+				  </div>
+				</div>
 			  </div>
 			</div>
 		  </div>
@@ -5789,6 +5881,7 @@ function catch_stripe_config(){
 					'%s'
 				)
 			);
+			$_SESSION['stripe_plugin']['success'] = 'Stripe config change successfully';
 			//echo $wpdb->insert_id;
 		} else {
 			$wpdb->update(
@@ -5804,6 +5897,7 @@ function catch_stripe_config(){
 				),
 				array( '%d' )
 			);
+			$_SESSION['stripe_plugin']['success'] = 'Stripe config change successfully';
 		}
     }
 	//create new Plan
@@ -5818,52 +5912,63 @@ function catch_stripe_config(){
 			$trial = 0;
 		}
 
-		//create subscription
-		$new_plan = new Stripe();
-		//check if plane exist
-		$check_plan = $new_plan->getPlan($plan_id);
-		//if plan not exist
-		if (isset($check_plan['error'])) {
-			$new_plan->url .= 'plans';
-			$plan_data = array(
-				"name" => $plan_name,
-				"id" => $plan_id,
-				"interval" => "month",
-				"currency" => "usd",
-				"amount" => $amount_subscription,
-				"trial_period_days" => $trial
-			);
-			//create new plan
-			$plan = $new_plan->createPlan($plan_data);
-			if(isset($plan['id'])){
-				//save plan in database
-				$wpdb->insert(
-					'wp_stripe_plan',
-					array(
-						'plan_price' => $amount_subscription,
-						'plan_trial' => $trial,
-						'plan_name' => $plan_name,
-						'plan_id' => $plan_id,
-						'page_use' => $page_use,
-						'is_active' => 'Y'
-					),
-					array(
-						'%d',
-						'%d',
-						'%s',
-						'%s',
-						'%s',
-						'%s'
-					)
-				);
-				//echo plan create successfully
-			} else {
-				//echo plan create error
-			}
 
+		//check plan in page -> only one plan in page
+		$sql = "SELECT * from wp_stripe_plan WHERE page_use='{$page_use}'";
+		$stripe_plan = $wpdb->get_results($sql);
+
+		if(empty($stripe_plan)) {
+
+			//create subscription
+			$new_plan = new Stripe();
+			//check if plane exist
+			$check_plan = $new_plan->getPlan($plan_id);
+			//if plan not exist
+			if (isset($check_plan['error'])) {
+				$new_plan->url .= 'plans';
+				$plan_data = array(
+					"name" => $plan_name,
+					"id" => $plan_id,
+					"interval" => "month",
+					"currency" => "usd",
+					"amount" => $amount_subscription,
+					"trial_period_days" => $trial
+				);
+				//create new plan
+				$plan = $new_plan->createPlan($plan_data);
+				if (isset($plan['id'])) {
+					//save plan in database
+					$wpdb->insert(
+						'wp_stripe_plan',
+						array(
+							'plan_price' => $amount_subscription,
+							'plan_trial' => $trial,
+							'plan_name' => $plan_name,
+							'plan_id' => $plan_id,
+							'page_use' => $page_use,
+							'is_active' => 'Y'
+						),
+						array(
+							'%d',
+							'%d',
+							'%s',
+							'%s',
+							'%s',
+							'%s'
+						)
+					);
+					//echo plan create successfully
+					$_SESSION['stripe_plugin']['success'] = 'Stripe plan create successfully';
+				} else {
+					//$plan to log
+					$_SESSION['stripe_plugin']['error'] = 'Stripe plan create error';
+				}
+
+			} else {
+				$_SESSION['stripe_plugin']['error'] = 'Stripe plan already exist';
+			}
 		} else {
-			// if plan exist echo message
-			//echo '<div style="position: absolute;top:20%;left:50%;">Plan already exist</div>';
+			$_SESSION['stripe_plugin']['error'] = 'Stripe plan already exist on this page';
 		}
 
 	}
@@ -5871,10 +5976,160 @@ function catch_stripe_config(){
 
 	//update plan
 	if(isset($_POST['database_plan_id'])) {
-		echo '<pre>';
-		print_r($_POST);
-		echo '</pre>';
-		die();
+		$stripe = new Stripe();
+		$database_plan_id = $_POST['database_plan_id'];
+		$plan_id = $_POST['c_plan_id'];
+		$plan_name = $_POST['c_plan_name'];
+		//$plan_price = $_POST['c_plan_price'];
+		$plan_trial = $_POST['c_plan_trial'];
+		$plan_page = $_POST['c_plan_page'];
+
+
+		$plan_update_data = array(
+			"name" => $plan_name,
+			"trial_period_days" => $plan_trial
+		);
+		//update plan in stripe API
+		$update_plan = $stripe->updatePlan($plan_update_data, $plan_id);
+		//update plan in database
+		if(isset($update_plan['name'])) {
+			$update_database_plan = $wpdb->update(
+				'wp_stripe_plan',
+				array(
+					'plan_name' => $plan_name,
+					'plan_trial' => $plan_trial,
+					'page_use' => $plan_page
+				),
+				array( 'ID' => $database_plan_id),
+				array(
+					'%s',
+					'%d',
+					'%s'
+				),
+				array( '%d' )
+			);
+			if($update_database_plan){
+				$_SESSION['stripe_plugin']['success'] = 'Stripe plan update successfully';
+			} else {
+				$_SESSION['stripe_plugin']['error'] = 'Stripe plan update error';
+			}
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Stripe plan update error';
+		}
+	}
+
+	//delete plan
+	if(isset($_POST['del_plan_id'])) {
+		$plan_id_database = $_POST['del_plan_id'];
+		$stripe_plan_id = $_POST['del_plan_stripe_id'];
+
+		$stripe = new Stripe();
+		$delete_plan = $stripe->deletePlan($stripe_plan_id);
+
+		if(isset($delete_plan['deleted'])) {
+			//api delete plan -> then delete in database
+			if($delete_plan['deleted'] == true) {
+				$del_plan = $wpdb->delete( 'wp_stripe_plan', array( 'ID' => $plan_id_database ), array( '%d' ) );
+				if($del_plan){
+					$_SESSION['stripe_plugin']['success'] = 'Stripe plan delete successfully';
+				} else {
+					$_SESSION['stripe_plugin']['error'] = 'Stripe plan delete error';
+				}
+			} else {
+				$_SESSION['stripe_plugin']['error'] = 'Stripe plan delete error';
+			}
+		} else {
+			//save to log file $delete_plan if delete error
+			$_SESSION['stripe_plugin']['error'] = 'Stripe plan delete error';
+		}
+	}
+
+	//add product and page price
+	if(isset($_POST['stripe_pay_amount'])) {
+		$fee = $_POST['stripe_pay_amount'];
+		$page_use = $_POST['stripe_pay_page'];
+		$fee_description = $_POST['stripe_pay_desc'];
+
+		//check plan in page -> only one plan in page
+		$sql = "SELECT * from wp_stripe_fee WHERE page_use='{$page_use}'";
+		$check_fee_page = $wpdb->get_results($sql);
+
+		if(empty($check_fee_page)) {
+			$new_fee = $wpdb->insert(
+				'wp_stripe_fee',
+				array(
+					'fee_amount' => $fee,
+					'page_use' => $page_use,
+					'description' => $fee_description
+				),
+				array(
+					'%d',
+					'%s',
+					'%s'
+				)
+			);
+			if($new_fee){
+				$_SESSION['stripe_plugin']['success'] = 'Stripe fee created successfully';
+			} else {
+				$_SESSION['stripe_plugin']['error'] = 'Stripe fee created error';
+			}
+
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Stripe fee page already in use';
+		}
+	}
+
+	//update Stripe price
+	if(isset($_POST['database_fee_id'])){
+		$fee_id = $_POST['database_fee_id'];
+		$page_use = $_POST['c_fee_plan_page'];
+		$fee_desc = $_POST['c_desc'];
+		$fee = $_POST['c_fee'];
+
+		//check plan in page -> only one plan in page
+		$sql = "SELECT * from wp_stripe_fee WHERE page_use='{$page_use}' AND  id NOT IN ({$fee_id})";
+		$check_fee_page = $wpdb->get_results($sql);
+
+		if(empty($check_fee_page)) {
+			//update price
+			$update_fee = $wpdb->update(
+				'wp_stripe_fee',
+				array(
+					'fee_amount' => $fee,
+					'page_use' => $page_use,
+					'description' => $fee_desc
+				),
+				array( 'ID' => $fee_id),
+				array(
+					'%d',
+					'%s',
+					'%s'
+				),
+				array( '%d' )
+			);
+
+			if($update_fee){
+				$_SESSION['stripe_plugin']['success'] = 'Fee saccesfully update';
+				//eche message ->> fee saccesfully update
+			} else {
+				$_SESSION['stripe_plugin']['error'] = 'Fee update error';
+			}
+
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Fee page already in use';
+		}
+	}
+
+	//delete Stripe price
+	if(isset($_POST['del_fee_id'])){
+		$fee_id = $_POST['del_fee_id'];
+
+		$del_fee = $wpdb->delete( 'wp_stripe_fee', array( 'ID' => $fee_id ), array( '%d' ) );
+		if($del_fee){
+			$_SESSION['stripe_plugin']['success'] = 'Fee deleted saccesfully';
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Fee deleted error';
+		}
 	}
 }
 add_action( 'init', 'catch_stripe_config' );
