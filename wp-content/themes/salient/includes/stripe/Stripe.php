@@ -8,7 +8,17 @@ class Stripe
     function __construct()
     {   //my token sk_test_Pmtiqut8msdIXyyZqGniDvBy
         //client -> sk_test_qy8CtMDg5OWhtrLbDFIUhV7c
-        $this->headers = array('Authorization: Bearer ' . 'sk_test_Pmtiqut8msdIXyyZqGniDvBy'); // STRIPE_API_KEY = your stripe api key
+        //load database class
+
+        global $wpdb;
+        $getStripeConfig = $wpdb->get_row( "SELECT * FROM  wp_stripe_config", ARRAY_A );
+        if(!empty($getStripeConfig)) {
+            $this->headers = array('Authorization: Bearer ' . $getStripeConfig['stripe_key']); // STRIPE_API_KEY = your stripe api key
+        } else {
+            //if no config token -> send empty token and response NULL
+            $this->headers = array('Authorization: Bearer ' .'');
+        }
+
     }
     //create customer in Stripe system!
     function call()

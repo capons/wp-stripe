@@ -5179,7 +5179,7 @@ function strip_request_catch() {
     //load Stripe library
 	require_once locate_template( 'includes/stripe/Stripe.php' );
 	//load library to send Stripe customer payment information
-    require_once locate_template( 'includes/stripe/sendStripeData.php' );
+    //require_once locate_template( 'includes/stripe/sendStripeData.php' );
 
 	if ( isset( $_POST['stripeEmail'] ) || isset($_POST['page_type']) ) {
 
@@ -5225,24 +5225,11 @@ function strip_request_catch() {
 				$_SESSION['pp_users']['stripe']['customer'] = $customer;
 
 
-
-
-
-
-
 				//get customer Stripe data and send to API server ->>> to create new user
-                $customerData = $cus->getCustomer($customer['id']);
-				$thirdApi = new sendStripeData();
+               // $customerData = $cus->getCustomer($customer['id']);
+				//$thirdApi = new sendStripeData();
 				//$customerSend = $thirdApi->sendCustomerPayment('user/create_update', $customerData);
 				//if customerSend => true --- send data to API request!!!
-
-				echo '<pre>';
-				//print_r($customerSend);
-				echo '</pre>';
-				//die();
-
-
-
 
 
 				if (isset($customer['id'])) {
@@ -5620,6 +5607,8 @@ function test_plugin_setup_menu(){
 
 
 }
+
+
 
 function test_init(){
 	global $wpdb;
