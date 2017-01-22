@@ -9,16 +9,18 @@ $getPagePlan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan WHERE page_use = '
 if(!empty($getStripeConfig) && !empty($getPageFee) && !empty($getPagePlan)){
 ?>
 <form style="display: none" action="" class="stripe_f" method="POST">
-    <input type="hidden" name="redirect" value="/oto-gqkc/"> <!-- /oto-gqkc/ -->
+    <input type="hidden" name="redirect" value="/<?php echo $getPageFee['redirect_page']; ?>/"> <!-- /oto-gqkc/ -->
     <input type="hidden" name="page_type" value="join-kc">
     <input type="hidden" name='amount' value="<?php echo $getPageFee['fee_amount']; ?>"> <!--one time payment -->
     <input type="hidden" name='sub_amount' value="<?php echo $getPagePlan['plan_price']; ?>"> <!--subscription -->
+    <input type="hidden" name='sub_id' value="<?php echo $getPagePlan['plan_id']; ?>">
+    <input type="hidden" name='sub_name' value="<?php echo $getPagePlan['plan_name']; ?>">
     <script
         src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"
         data-key="<?php echo $getStripeConfig['stripe_secret']; ?>"
         data-amount="<?php echo $getPageFee['fee_amount']; ?>"
         data-name="MusicSupervisor"
-        data-description="<?php echo $getPageFee['fee_amount']; ?>$, after <?php $getPagePlan['plan_trial']; ?> days <?php echo $getPagePlan['plan_price']; ?>$/month"
+        data-description="<?php echo $getPageFee['fee_amount']; ?>$ <?php if(!empty($getPagePlan)) { ?>, after <?php echo $getPagePlan['plan_trial']; ?> days <?php echo $getPagePlan['plan_price']; ?>$/month <?php } ?>"
         data-shipping-address="true"
         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
         data-locale="auto">

@@ -8,12 +8,16 @@ if(isset($_SESSION['pp_users']['stripe']['subscription'])) {
         <!--my token ->>>  pk_test_jgmwLo0RtxV342m0e5sfmxwY -->
         <!--client token ->> pk_test_Oxm6sN3ADQ2kN69GfpfBwOGK  -->
         <form style="display: none; opacity: 0" action="" method="POST">
-            <input type="hidden" name="redirect" value="/oto-ygkc/"> <!-- /oto-ygkc/ -->
+            <input type="hidden" name="redirect" value="/<?php echo $getPagePlan['redirect_page']; ?>/"> <!-- /oto-ygkc/ -->
             <input type="hidden" name="page_type" value="oto-gqkc">
             <input type="hidden" name='amount' value="<?php echo $getPagePlan['plan_price']; ?>">
             <input type="hidden" name='sub_id'
                    value="<?php echo $_SESSION['pp_users']['stripe']['subscription']['id']; ?>">
+            <input type="hidden" name='sub_new_id' value="<?php echo $getPagePlan['plan_id']; ?>">
+            <input type="hidden" name='sub_new_name' value="<?php echo $getPagePlan['plan_name']; ?>">
             <input type="submit" style="display: none" id="stripe_upsell">
+
+
             <!--
             <script
                 src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"

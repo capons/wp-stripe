@@ -28,11 +28,22 @@
 
 
 	<!--Stripe script for page contains in if statement -->
-<?php if(get_page_uri() == 'join-kc' || get_page_uri() == 'oto-gqkc' || get_page_uri() == 'oto-ygkc') { ?>
+	<?php
+	global $wpdb;
+	$getStripeFeePage = $wpdb->get_results( "SELECT wp_stripe_fee.page_use FROM  wp_stripe_fee", ARRAY_A );
+	$getStripePlanPage = $wpdb->get_results( "SELECT wp_stripe_plan.page_use FROM  wp_stripe_plan", ARRAY_A );
+	$allPage = array_merge($getStripeFeePage,$getStripePlanPage);
+	$stripePage = array();
+	foreach($allPage as $k=>$v) {
+		$stripePage[] = $v['page_use'];
+	}
+
+	?>
+<?php if (in_array(get_page_uri(), $stripePage)){ // if(get_page_uri() == 'join-kc' || get_page_uri() == 'oto-gqkc' || get_page_uri() == 'oto-ygkc') { ?>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/wp-includes/js/stripe/stripe-main.js"></script>
-<?php } ?>
+<?php } // } ?>
 
 
 
@@ -151,12 +162,25 @@ if($perm_trans != 1 || $perm_trans == 1 && $bg_header == 'false' || $page_full_s
 
 <!--Include Stripe payment form -->
 <?php
-if(get_page_uri() == 'join-kc') {
-	get_template_part('includes/stripe/form/join-kc-form');
-} else if( get_page_uri() == 'oto-gqkc') {
-	get_template_part('includes/stripe/form/oto-gqkc-form');
-} else if (get_page_uri() == 'oto-ygkc') {
-	get_template_part('includes/stripe/form/oto-ygkc-form');
+if (in_array(get_page_uri(), $stripePage)) {
+
+	//multiple stripe form
+	$defaultPage = array('join-kc','oto-gqkc','oto-ygkc');
+	if(!in_array(get_page_uri(), $defaultPage)){
+		get_template_part('includes/stripe/form/multiple-page');
+	}
+
+	//default payment forms
+	if (get_page_uri() == 'join-kc') {
+		get_template_part('includes/stripe/form/join-kc-form');
+	} else if (get_page_uri() == 'oto-gqkc') {
+		get_template_part('includes/stripe/form/oto-gqkc-form');
+	} else if (get_page_uri() == 'oto-ygkc') {
+		get_template_part('includes/stripe/form/oto-ygkc-form');
+	} else {
+
+	}
+
 }
 ?>
 
