@@ -16,12 +16,13 @@ if(!empty($getStripeConfig) && (!empty($getPageFee) || !empty($getPagePlan))){
         <input type="hidden" name='m_sub_name' value="<?php echo $getPagePlan['plan_name']; ?>">
         <input type="hidden" name='m_sub_trial' value="<?php echo $getPagePlan['plan_trial']; ?>">
         <input type="hidden" name='m_sub_amount' value="<?php echo $getPagePlan['plan_price']; ?>"> <!--subscription -->
+        <input type="hidden" name='m_sub_desc' value="<?php if(isset($getPageFee['description'])){ echo $getPageFee['description'];} else { echo $getPagePlan['description']; } ?>"> <!--subscription -->
         <script
             src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"
             data-key="<?php echo $getStripeConfig['stripe_secret']; ?>"
             data-amount="<?php echo $getPageFee['fee_amount']; ?>"
             data-name="MusicSupervisor"
-            data-description="<?php if(!empty($getPageFee['fee_amount'])) { echo $getPageFee['fee_amount'];} ?>$ <?php if(!empty($getPagePlan['plan_trial'])){ ?>, after <?php echo $getPagePlan['plan_trial']; ?> days <?php  echo $getPagePlan['plan_price']; ?>$/month <?php } ?>"
+            data-description="<?php if(isset($getPageFee['description'])){ echo $getPageFee['description'];} else { echo $getPagePlan['description']; } ?>"
             data-shipping-address="true"
             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
             data-locale="auto">

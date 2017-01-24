@@ -5203,6 +5203,8 @@ function strip_request_catch()
 			//$amount_plan = $_POST['amount']; //one time payment
 			$amount_subscription = $_POST['sub_amount']; //subscription
 			$redirect = $_POST['redirect'];
+			$trial = htmlspecialchars($_POST['sub_trial']);
+			$desc = htmlspecialchars($_POST['desc']);
 
 			//create payment request
 			$pay = new Stripe();
@@ -5211,7 +5213,7 @@ function strip_request_catch()
 				'amount' => intval($_POST['amount']),
 				'currency' => 'usd',
 				'customer' => $customer['id'],
-				'description' => 'Music Supervisor ,One Time Offer "first step"'
+				'description' => $desc
 			);
 			$charge = $pay->charge($param);
 
@@ -5245,7 +5247,7 @@ function strip_request_catch()
 							"interval" => "month",
 							"currency" => "usd",
 							"amount" => $amount_subscription,
-							"trial_period_days" => 30
+							"trial_period_days" => $trial
 						);
 						//create new plan
 						$plan = $new_plan->createPlan($plan_data);
@@ -5258,7 +5260,7 @@ function strip_request_catch()
 							$data = array(
 								"plan" => $plan_id,
 								"customer" => $customer['id'],
-								"trial_period_days" => 30
+								"trial_period_days" => $trial
 							);
 							$response = $sub->subscription($data);
 							if (isset($response['id'])) {
@@ -5291,7 +5293,7 @@ function strip_request_catch()
 							$data = array(
 								"plan" => $check_plan['id'],
 								"customer" => $customer['id'],
-								"trial_period_days" => 30
+								"trial_period_days" => $trial
 							);
 							$response = $sub->subscription($data);
 
@@ -5577,7 +5579,7 @@ function strip_request_catch()
 			$mPlanName = htmlspecialchars($_POST['m_sub_name']);
 			$mPlanAmount = intval($_POST['m_sub_amount']);
 			$mPlanTrial = intval($_POST['m_sub_trial']);
-
+			$mPlanDesc = htmlspecialchars($_POST['m_sub_desc']);
 			//create customer
 			$cus = new Stripe();
 			$cus->url .= 'customers';
@@ -5592,7 +5594,7 @@ function strip_request_catch()
 				'amount' => $payAmount,
 				'currency' => 'usd',
 				'customer' => $customer['id'],
-				'description' => 'Music Supervisor ,One Time Offer'
+				'description' => $mPlanDesc
 			);
 			$charge = $pay->charge($param);
 			//if payment do not have PLAN
@@ -5756,12 +5758,19 @@ function stripe_config_style($hook) {
 		return;
 	//wp_register_style('options_page_style', plugins_url('css/options_style.css',__FILE__));
 	//wp_enqueue_style('options_page_style');
-
 	wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-1.12.4.js', array('jquery'), '1.9.1', true); // we need the jquery library for bootsrap js to function
 	wp_enqueue_script( 'bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js', array('jquery'), true); // all the bootstrap javascript goodness
 	wp_enqueue_style( 'bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' );
+
 }
 add_action( 'admin_enqueue_scripts', 'stripe_config_style' );
+function my_custom_js() {
+	echo '<script type="text/javascript" src="/wp-admin/js/stripe-config.js"></script>';
+}
+// Add hook for admin <head></head>
+add_action('admin_head', 'my_custom_js');
+// Add hook for front-end <head></head>
+add_action('wp_head', 'my_custom_js');
 
 
 
@@ -5804,7 +5813,7 @@ function test_init(){
 	//$stripe_plan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan", ARRAY_A );
 
 	//Update plan template
-	$update_plan_html = '<table class="table"><tr><td>#</td><td>Plan name</td><td>Plan trial</td><td>Plan page</td><td>Redirect page</td><td></td><td></td></tr>';
+	$update_plan_html = '<table class="table"><tr><td>#</td><td>Plan name</td><td>Plan trial</td><td>Plan page</td><td>Redirect page</td><td>Plan description</td><td></td><td></td></tr>';
 	$i = 1;
 	foreach ($stripe_plan as $k=>$v) {
 		$update_plan_html .= '<tr>
@@ -5829,6 +5838,9 @@ function test_init(){
 							<input required name="c_plan_redirect_page" value="'.$v->redirect_page.'">
 						</td>
 						<td>
+							<input required name="c_plan_description_page" value="'.$v->description.'">
+						</td>
+						<td>
 							<input type="submit" value="Update">
 						</td>
 					</form>
@@ -5843,52 +5855,96 @@ function test_init(){
 		$i++;
 	}
 	$update_plan_html .= '</table>';
-	//add new plan template
+
 	$add_new_plan_html = '
-		<table>
-       		<tr>
-       			<td>Plan price</td>
-       			<td>Plan id</td>
-       			<td>Plan name</td>
-       			<td>Plan page</td>
-       			<td>Redirect page</td>
-       			<td>Plan trial</td>
-       			<td></td>
-			</tr>
-			<tr>
-				<form method="POST">
-					<td><input required name="stripe_plan_amount" value=""></td>
-					<td><input required name="stripe_plan_id" value=""></td>
-					<td><input required name="stripe_plan_name" value=""></td>
-					<td><input required name="stripe_plan_page" value=""></td>
-					<td><input required name="stripe_redirect_page" value=""></td>
-					<td><input name="stripe_plan_trial" value=""></td>
-					<td><input value="Add" type="submit"></td>
-				</form>
-			</tr>
-		</table>
+	<div class="modal fade" id="add-plan-m" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Add new plan</h4>
+		  </div>
+		  <form method="POST">
+			  <div class="modal-body">
+				<div class="form-group">
+					<label>Plan fee</label>
+					<input  class="form-control" data-last-num="" required name="stripe_plan_amount" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Plan id</label>
+					<input  class="form-control" required name="stripe_plan_id" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Plan name</label>
+					<input  class="form-control" required name="stripe_plan_name" value="">
+				 </div>
+				  <div class="form-group">
+					<label>Plan description</label>
+					<input  class="form-control" required name="stripe_plan_desc" value="">
+				 </div>
+				  <div class="form-group">
+					<label>Plan page</label>
+					<input  class="form-control" required name="stripe_plan_page" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Page redirect</label>
+					<input  class="form-control" required name="stripe_redirect_page" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Plan trial</label>
+					<input  class="form-control" type="number" required name="stripe_plan_trial" value="">
+				 </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save changes</button>
+			  </div>
+		  </form>
+		</div>
+	  </div>
+	</div>
 	';
 
-	//add new page price
 	$add_new_price_html = '
-		<table>
-       		<tr>
-       			<td>Fee</td>
-       			<td>Fee description</td>
-       			<td>Page</td>
-       			<td>Redirect page</td>
-       			<td></td>
-			</tr>
-			<tr>
-				<form method="POST">
-					<td><input required name="stripe_pay_amount" value=""></td>
-					<td><input name="stripe_pay_desc" value=""></td>
-					<td><input required name="stripe_pay_page" value=""></td>
-					<td><input required name="stripe_pay_redirect_page" value=""></td>
-					<td><input value="Add" type="submit"></td>
-				</form>
-			</tr>
-		</table>
+		<div class="modal fade" id="add-price-m" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Add new product price</h4>
+		  </div>
+		  <form method="POST">
+			  <div class="modal-body">
+				<div class="form-group">
+					<label>Fee</label>
+					<input  class="form-control" data-last-num="" required name="stripe_pay_amount" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Description</label>
+					<input  class="form-control" name="stripe_pay_desc" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Fee page</label>
+					<input  class="form-control" required name="stripe_pay_page">
+				 </div>
+				  <div class="form-group">
+					<label>Plan page</label>
+					<input  class="form-control" required name="stripe_plan_page" value="">
+				 </div>
+				 <div class="form-group">
+					<label>Page redirect</label>
+					<input  class="form-control" required name="stripe_pay_redirect_page" value="">
+				 </div>
+
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save changes</button>
+			  </div>
+		  </form>
+		</div>
+	  </div>
+	</div>
 	';
 
 	//all Stripe fee html template (for update)
@@ -5963,7 +6019,11 @@ function test_init(){
 			<div id=\"collapseTwo\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">
 			  <div class=\"panel-body\">
 				<div class=\"panel panel-default\">
-				  <div class=\"panel-heading\">Add new plan</div>
+				  <div class=\"panel-heading\">
+				 	<button type=\"button\" class=\"btn btn-primary btn-lg\" id=\"add-n-p\" data-toggle=\"modal\" data-target=\"#add-plan-m\">
+					  Add new plan
+					</button>
+				 </div>
 				  <div  class=\"panel-body\">
 					{$add_new_plan_html}
 				  </div>
@@ -5989,7 +6049,11 @@ function test_init(){
 			<div id=\"collapseThree\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">
 			  <div class=\"panel-body\">
 				<div class=\"panel panel-default\">
-				  <div class=\"panel-heading\">Add price</div>
+				  <div class=\"panel-heading\">
+				  	<button type=\"button\" class=\"btn btn-primary btn-lg\" id=\"add-n-f\" data-toggle=\"modal\" data-target=\"#add-price-m\">
+					  Add new product price
+					</button>
+				  </div>
 				  <div class=\"panel-body\">
 					{$add_new_price_html}
 				  </div>
@@ -6058,9 +6122,13 @@ function catch_stripe_config(){
 	if(isset($_POST['stripe_plan_name'])) {
 		$plan_id = htmlspecialchars($_POST['stripe_plan_id']);
 		$plan_name = htmlspecialchars($_POST['stripe_plan_name']);
-		$amount_subscription = intval($_POST['stripe_plan_amount']);
+		$amount_subscription = htmlspecialchars($_POST['stripe_plan_amount']);
 		$page_use = htmlspecialchars($_POST['stripe_plan_page']);
 		$page_redirect = htmlspecialchars($_POST['stripe_redirect_page']);
+		$desc = htmlspecialchars($_POST['stripe_plan_desc']);
+
+		$amount_subscription = (int)preg_replace('/[^0-9]/','',$amount_subscription);
+
 
 		if(!empty($_POST['stripe_plan_trial'])) {
 			$trial = $_POST['stripe_plan_trial'];
@@ -6103,6 +6171,7 @@ function catch_stripe_config(){
 							'plan_trial' => $trial,
 							'plan_name' => $plan_name,
 							'plan_id' => $plan_id,
+							'description' => $desc,
 							'page_use' => $page_use,
 							'redirect_page' => $page_redirect,
 							'is_active' => 'Y'
@@ -6110,6 +6179,7 @@ function catch_stripe_config(){
 						array(
 							'%d',
 							'%d',
+							'%s',
 							'%s',
 							'%s',
 							'%s',
@@ -6142,8 +6212,9 @@ function catch_stripe_config(){
 		$plan_name = $_POST['c_plan_name'];
 		//$plan_price = $_POST['c_plan_price'];
 		$plan_trial = $_POST['c_plan_trial'];
-		$plan_page = $_POST['c_plan_page'];
+		$plan_page = htmlspecialchars($_POST['c_plan_page']);
 		$page_redirect = htmlspecialchars($_POST['c_plan_redirect_page']);
+		$plan_description = htmlspecialchars($_POST['c_plan_description_page']);
 
 
 		$plan_update_data = array(
@@ -6160,12 +6231,14 @@ function catch_stripe_config(){
 					'plan_name' => $plan_name,
 					'plan_trial' => $plan_trial,
 					'page_use' => $plan_page,
-					'redirect_page' => $page_redirect
+					'redirect_page' => $page_redirect,
+					'description' => $plan_description
 				),
 				array( 'ID' => $database_plan_id),
 				array(
 					'%s',
 					'%d',
+					'%s',
 					'%s',
 					'%s'
 				),
@@ -6209,11 +6282,12 @@ function catch_stripe_config(){
 
 	//add product and page price
 	if(isset($_POST['stripe_pay_amount'])) {
-		$fee = intval($_POST['stripe_pay_amount']);
+		$fee = htmlspecialchars($_POST['stripe_pay_amount']);
 		$page_use = htmlspecialchars($_POST['stripe_pay_page']);
 		$fee_description = htmlspecialchars($_POST['stripe_pay_desc']);
 		$redirect_page = htmlspecialchars($_POST['stripe_pay_redirect_page']);
 
+		$fee = (int)preg_replace('/[^0-9]/','',$fee);
 		//check plan in page -> only one plan in page
 		$sql = "SELECT * from wp_stripe_fee WHERE page_use='{$page_use}'";
 		$check_fee_page = $wpdb->get_results($sql);
@@ -6229,6 +6303,7 @@ function catch_stripe_config(){
 				),
 				array(
 					'%d',
+					'%s',
 					'%s',
 					'%s'
 				)
