@@ -5571,6 +5571,14 @@ function strip_request_catch()
 		}
 
 
+
+
+
+
+
+
+
+
 		//Stripe mupltiply page payment request get
 		if (isset($_POST['m_page_type'])) {
 			$payAmount = intval($_POST['m_amount']);
@@ -5716,6 +5724,46 @@ function strip_request_catch()
 
 			}
 		}
+
+
+
+
+
+		//multipl page One Time Payment
+		if (isset($_POST['onetime_amount'])) {
+			$payAmount = intval($_POST['onetime_amount']);
+			$mRedirect = htmlspecialchars($_POST['onetime_redirect']);
+
+			$payDesc = htmlspecialchars($_POST['onetime_desc']);
+			//create customer
+			$cus = new Stripe();
+			$cus->url .= 'customers';
+			$cus->fields['email'] = $_POST['stripeEmail'];
+			$cus->fields['source'] = $_POST['stripeToken'];
+			$customer = $cus->call();
+
+			//create payment request
+			$pay = new Stripe();
+			$pay->url .= 'charges';
+			$param = array(
+				'amount' => $payAmount,
+				'currency' => 'usd',
+				'customer' => $customer['id'],
+				'description' => $payDesc
+			);
+			$charge = $pay->charge($param);
+			if ($charge['status'] == 'succeeded') {
+				//log error Payment OK ->>> And send API Request with payment parameters
+				?>
+				<script type="text/javascript">
+					var base_url = "<?php echo get_site_url(); ?>";
+					var uri = "<?php echo $mRedirect; ?>";
+					window.location.href = base_url + uri;
+				</script>
+				<?php
+
+			}
+		}
 	}
 }
 add_action( 'init', 'strip_request_catch' );
@@ -5813,7 +5861,7 @@ function test_init(){
 	//$stripe_plan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan", ARRAY_A );
 
 	//Update plan template
-	$update_plan_html = '<table class="table"><tr><td>#</td><td>Plan name</td><td>Plan trial</td><td>Plan page</td><td>Redirect page</td><td>Plan description</td><td></td><td></td></tr>';
+	$update_plan_html = '<table class="table"><tr><td>#</td><td>Plan name</td><td>Plan trial</td><td>Redirect page</td><td>Plan description</td><td></td><td></td></tr>';
 	$i = 1;
 	foreach ($stripe_plan as $k=>$v) {
 		$update_plan_html .= '<tr>
@@ -5830,9 +5878,6 @@ function test_init(){
 
 						<td>
 							<input required name="c_plan_trial" value="'.$v->plan_trial.'">
-						</td>
-						<td>
-							<input required name="c_plan_page" value="'.$v->page_use.'">
 						</td>
 						<td>
 							<input required name="c_plan_redirect_page" value="'.$v->redirect_page.'">
@@ -5856,6 +5901,18 @@ function test_init(){
 	}
 	$update_plan_html .= '</table>';
 
+	$sql_p = "SELECT * from wp_stripe_page s WHERE s.plan_id is NULL";
+	$stripe_page_r = $wpdb->get_results($sql_p);
+
+
+	//Update plan template
+	$page_select = '<select required class="form-control" name="stripe_plan_page">';
+	$i = 1;
+	foreach ($stripe_page_r as $k=>$v) {
+		$page_select.='<option value='.$v->id.'>'.$v->page.'</option>';
+		$i++;
+	}
+	$page_select.='</select>';
 	$add_new_plan_html = '
 	<div class="modal fade" id="add-plan-m" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
@@ -5884,7 +5941,8 @@ function test_init(){
 				 </div>
 				  <div class="form-group">
 					<label>Plan page</label>
-					<input  class="form-control" required name="stripe_plan_page" value="">
+					'.$page_select.'
+
 				 </div>
 				 <div class="form-group">
 					<label>Page redirect</label>
@@ -5905,6 +5963,18 @@ function test_init(){
 	</div>
 	';
 
+
+	$sql_pp = "SELECT * from wp_stripe_page  WHERE fee_id is NULL";
+	$stripe_page_rr = $wpdb->get_results($sql_pp);
+
+	//Update plan template
+	$page_select_price = '<select required class="form-control" name="stripe_pay_page_r">';
+	$ii = 1;
+	foreach ($stripe_page_rr as $k=>$v) {
+		$page_select_price.='<option value='.$v->id.'>'.$v->page.'</option>';
+		$ii++;
+	}
+	$page_select_price.='</select>';
 	$add_new_price_html = '
 		<div class="modal fade" id="add-price-m" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
@@ -5923,13 +5993,10 @@ function test_init(){
 					<label>Description</label>
 					<input  class="form-control" name="stripe_pay_desc" value="">
 				 </div>
-				 <div class="form-group">
-					<label>Fee page</label>
-					<input  class="form-control" required name="stripe_pay_page">
-				 </div>
+
 				  <div class="form-group">
-					<label>Plan page</label>
-					<input  class="form-control" required name="stripe_plan_page" value="">
+					<label>Fee page</label>
+					'.$page_select_price.'
 				 </div>
 				 <div class="form-group">
 					<label>Page redirect</label>
@@ -5987,6 +6054,79 @@ function test_init(){
 	}
 	$update_price_html .= '</table>';
 
+	//add new page
+	$stripe_page = '<div class="modal fade" id="add-page-m" tabindex="-1" role="dialog">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Add new page</h4>
+						  </div>
+						  <form method="POST">
+							  <div class="modal-body">
+								<div class="form-group">
+									<label>Page url</label>
+									<input  class="form-control"  required name="stripe_pay_page" value="">
+								 </div>
+
+
+							  </div>
+							  <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Save changes</button>
+							  </div>
+						  </form>
+						</div>
+					  </div>
+					</div>';
+
+	//delete page
+
+	//get All Plan
+	$sql_page = "SELECT * from wp_stripe_page";
+	$stripe_page_update = $wpdb->get_results($sql_page);
+	//$stripe_plan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan", ARRAY_A );
+
+	//Update plan template
+	$update_page_html = '<table class="table"><tr><td>#</td><td>Page name</td><td></td><td></td></tr>';
+	$i = 1;
+	foreach ($stripe_page_update as $k=>$v) {
+		$update_page_html .= '<tr>
+					<form action="" method="post">
+						<td>
+						 '.$i.'
+						</td>
+
+						<td>
+							<input type="hidden" name="update_page_id" value="'.$v->id.'">
+							<input name="update_page_name" value="'.$v->page.'">
+
+						</td>
+
+						<td>
+							<input type="submit" value="Update">
+						</td>
+					</form>
+					<form action="" method="post">
+						<td>
+							<input type="hidden" name="d_page_id" value="'.$v->id.'">
+							<input type="hidden" name="d_page_plan_id" value="'.$v->plan_id.'">
+							<input type="hidden" name="d_page_fee_id" value="'.$v->fee_id.'">
+							<input type="submit" value="Delete">
+						</td>
+					</form>
+			  </tr>';
+		$i++;
+	}
+	$update_page_html .= '</table>';
+
+
+
+
+
+
+
+
     //display plugin body with html template
     echo "
 		<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">
@@ -6008,6 +6148,33 @@ function test_init(){
 			  </div>
 			</div>
 		  </div>
+			<div class=\"panel panel-default\">
+				<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">
+				  <h4 class=\"panel-title\">
+					<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseT\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">
+					  Stripe page
+					</a>
+				  </h4>
+				</div>
+				<div id=\"collapseT\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">
+				  <div class=\"panel-body\">
+
+				  	<button type=\"button\" class=\"btn btn-primary btn-lg\" id=\"add-n-p\" data-toggle=\"modal\" data-target=\"#add-page-m\">
+					  Add new page
+					</button>
+					{$stripe_page}
+				  </div>
+
+				  <div class=\"panel panel-default\">
+				  <div class=\"panel-heading\">Update plans</div>
+				  <div style=\"overflow:scroll;\"class=\"panel - body\">
+					{$update_page_html}
+				  </div>
+				</div>
+
+
+				</div>
+			  </div>
 		  <div class=\"panel panel-default\">
 			<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">
 			  <h4 class=\"panel-title\">
@@ -6118,6 +6285,32 @@ function catch_stripe_config(){
 			$_SESSION['stripe_plugin']['success'] = 'Stripe config change successfully';
 		}
     }
+
+	//create Stripe page
+	if(isset($_POST['stripe_pay_page'])) {
+		$plan_page = htmlspecialchars($_POST['stripe_pay_page']);
+
+		$sql = "SELECT * from wp_stripe_page WHERE page='{$plan_page}'";
+		$stripe_page = $wpdb->get_results($sql);
+
+		if(empty($stripe_page)) {
+			$wpdb->insert(
+				'wp_stripe_page',
+				array(
+					'page' => $plan_page,
+				),
+				array(
+					'%s',
+				)
+			);
+			//echo plan create successfully
+			$_SESSION['stripe_plugin']['success'] = 'Stripe page create successfully';
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Stripe page already exist!';
+		}
+
+	}
+
 	//create new Plan
 	if(isset($_POST['stripe_plan_name'])) {
 		$plan_id = htmlspecialchars($_POST['stripe_plan_id']);
@@ -6172,9 +6365,8 @@ function catch_stripe_config(){
 							'plan_name' => $plan_name,
 							'plan_id' => $plan_id,
 							'description' => $desc,
-							'page_use' => $page_use,
 							'redirect_page' => $page_redirect,
-							'is_active' => 'Y'
+							'active' => 'Y'
 						),
 						array(
 							'%d',
@@ -6183,10 +6375,30 @@ function catch_stripe_config(){
 							'%s',
 							'%s',
 							'%s',
-							'%s',
 							'%s'
 						)
 					);
+					$l_plan_id = $wpdb->insert_id;
+
+					$update_stripe_page = $wpdb->update(
+						'wp_stripe_page',
+						array(
+							'plan_id' => $l_plan_id,
+
+						),
+						array( 'ID' => $page_use),
+						array(
+							'%d',
+						),
+						array( '%d' )
+					);
+					if($update_stripe_page){
+						$_SESSION['stripe_plugin']['success'] = 'Stripe plan create successfully';
+					} else {
+						$_SESSION['stripe_plugin']['error'] = 'Stripe plan create error';
+					}
+
+
 					//echo plan create successfully
 					$_SESSION['stripe_plugin']['success'] = 'Stripe plan create successfully';
 				} else {
@@ -6283,7 +6495,7 @@ function catch_stripe_config(){
 	//add product and page price
 	if(isset($_POST['stripe_pay_amount'])) {
 		$fee = htmlspecialchars($_POST['stripe_pay_amount']);
-		$page_use = htmlspecialchars($_POST['stripe_pay_page']);
+		$page_use = htmlspecialchars($_POST['stripe_pay_page_r']);
 		$fee_description = htmlspecialchars($_POST['stripe_pay_desc']);
 		$redirect_page = htmlspecialchars($_POST['stripe_pay_redirect_page']);
 
@@ -6297,25 +6509,46 @@ function catch_stripe_config(){
 				'wp_stripe_fee',
 				array(
 					'fee_amount' => $fee,
-					'page_use' => $page_use,
+					//	'page_use' => $page_use,
 					'redirect_page' => $redirect_page,
-					'description' => $fee_description
+					'description' => $fee_description,
+					'active' => 'Y'
 				),
 				array(
 					'%d',
+					//	'%s',
 					'%s',
 					'%s',
 					'%s'
 				)
 			);
-			if($new_fee){
-				$_SESSION['stripe_plugin']['success'] = 'Stripe fee created successfully';
-			} else {
-				$_SESSION['stripe_plugin']['error'] = 'Stripe fee created error';
-			}
+			if ($new_fee) {
 
-		} else {
-			$_SESSION['stripe_plugin']['error'] = 'Stripe fee page already in use';
+				$l_fee_id = $wpdb->insert_id;
+
+				$update_stripe_page = $wpdb->update(
+					'wp_stripe_page',
+					array(
+						'fee_id' => $l_fee_id,
+
+					),
+					array('ID' => $page_use),
+					array(
+						'%d',
+					),
+					array('%d')
+				);
+				if ($update_stripe_page) {
+
+
+					$_SESSION['stripe_plugin']['success'] = 'Stripe fee created successfully';
+				} else {
+					$_SESSION['stripe_plugin']['error'] = 'Stripe fee created error';
+				}
+
+			} else {
+				$_SESSION['stripe_plugin']['error'] = 'Stripe fee page already in use';
+			}
 		}
 	}
 
@@ -6373,6 +6606,44 @@ function catch_stripe_config(){
 		} else {
 			$_SESSION['stripe_plugin']['error'] = 'Fee deleted error';
 		}
+	}
+
+	//delete Stripe page
+	if(isset($_POST['d_page_id'])){
+		$d_page_id = intval($_POST['d_page_id']);
+		$del_page = $wpdb->delete( 'wp_stripe_page', array( 'ID' => $d_page_id ), array( '%d' ) );
+		if($del_page){
+			$_SESSION['stripe_plugin']['success'] = 'Page deleted saccesfully';
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Page deleted error';
+		}
+	}
+
+	//update Stripe page
+	if(isset($_POST['update_page_name'])) {
+		$u_page_id = intval($_POST['update_page_id']);
+		$u_page_name = htmlspecialchars($_POST['update_page_name']);
+
+		$update_page = $wpdb->update(
+			'wp_stripe_page',
+			array(
+				'page' => $u_page_name,
+
+			),
+			array( 'ID' => $u_page_id),
+			array(
+				'%s'
+			),
+			array( '%d' )
+		);
+
+		if($update_page){
+			$_SESSION['stripe_plugin']['success'] = 'Page saccesfully update';
+			//eche message ->> fee saccesfully update
+		} else {
+			$_SESSION['stripe_plugin']['error'] = 'Page update error';
+		}
+
 	}
 }
 add_action( 'init', 'catch_stripe_config' );

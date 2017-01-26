@@ -8,6 +8,7 @@ $getPagePlan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan WHERE page_use = '
 //get_page_uri()
 if(!empty($getStripeConfig) && !empty($getPageFee) && !empty($getPagePlan)){
 ?>
+
 <form style="display: none" action="" class="stripe_f" method="POST">
     <input type="hidden" name="redirect" value="/<?php echo $getPageFee['redirect_page']; ?>/"> <!-- /oto-gqkc/ -->
     <input type="hidden" name="page_type" value="join-kc">
@@ -17,6 +18,7 @@ if(!empty($getStripeConfig) && !empty($getPageFee) && !empty($getPagePlan)){
     <input type="hidden" name='sub_name' value="<?php echo $getPagePlan['plan_name']; ?>">
     <input type="hidden" name='sub_trial' value="<?php echo $getPagePlan['plan_trial']; ?>">
     <input type="hidden" name='desc' value="<?php if(isset($getPageFee['description'])){ echo $getPageFee['description'];} else { echo $getPagePlan['description']; } ?>">
+    <!--
     <script
         src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"
         data-key="<?php echo $getStripeConfig['stripe_secret']; ?>"
@@ -27,6 +29,7 @@ if(!empty($getStripeConfig) && !empty($getPageFee) && !empty($getPagePlan)){
         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
         data-locale="auto">
     </script>
+    -->
 
 
 

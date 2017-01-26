@@ -3,30 +3,59 @@
 <?php
 global $wpdb;
 $getStripeConfig = $wpdb->get_row( "SELECT * FROM  wp_stripe_config", ARRAY_A );
-$getPageFee = $wpdb->get_row( "SELECT * FROM  wp_stripe_fee WHERE page_use = '".get_page_uri()."'", ARRAY_A );
-$getPagePlan = $wpdb->get_row( "SELECT * FROM  wp_stripe_plan WHERE page_use = '".get_page_uri()."'", ARRAY_A );
+$getStripe = $wpdb->get_row("
+        SELECT
+          sp.page,f.fee_amount,f.redirect_page as fee_redirect,
+          f.description as fee_description,p.plan_price,p.plan_trial,
+          p.plan_name,p.plan_id,p.description as plan_description,
+          p.redirect_page as plan_redirect
+          FROM  wp_stripe_page sp
+            LEFT JOIN wp_stripe_fee f ON sp.fee_id = f.id
+            LEFT JOIN wp_stripe_plan p ON p.id = sp.plan_id
+        WHERE page = '".get_page_uri()."'", ARRAY_A);
+
 //get_page_uri()
-if(!empty($getStripeConfig) && (!empty($getPageFee) || !empty($getPagePlan))){
+if(!empty($getStripeConfig) && (!empty($getStripe))){
+    if(!empty($getStripe['fee_amount']) && !empty($getStripe['plan_price'])) {
     ?>
     <form style="display: none" action="" class="stripe_f" method="POST">
-        <input type="hidden" name="m_redirect" value="/<?php echo $getPageFee['redirect_page']; ?>/"> <!-- /oto-gqkc/ -->
-        <input type="hidden" name="m_page_type" value="<?php echo $getPageFee['page_use']; ?>"> <!--join-kc -->
-        <input type="hidden" name='m_amount' value="<?php echo $getPageFee['fee_amount']; ?>"> <!--one time payment -->
-        <input type="hidden" name='m_sub_id' value="<?php echo $getPagePlan['plan_id']; ?>">
-        <input type="hidden" name='m_sub_name' value="<?php echo $getPagePlan['plan_name']; ?>">
-        <input type="hidden" name='m_sub_trial' value="<?php echo $getPagePlan['plan_trial']; ?>">
-        <input type="hidden" name='m_sub_amount' value="<?php echo $getPagePlan['plan_price']; ?>"> <!--subscription -->
-        <input type="hidden" name='m_sub_desc' value="<?php if(isset($getPageFee['description'])){ echo $getPageFee['description'];} else { echo $getPagePlan['description']; } ?>"> <!--subscription -->
+        <input type="hidden" name="m_redirect" value="/<?php echo $getStripe['fee_redirect']; ?>/"> <!-- /oto-gqkc/ -->
+        <input type="hidden" name="m_page_type" value="<?php echo $getStripe['page']; ?>"> <!--join-kc -->
+        <input type="hidden" name='m_amount' value="<?php echo $getStripe['fee_amount']; ?>"> <!--one time payment -->
+        <input type="hidden" name='m_sub_id' value="<?php echo $getStripe['plan_id']; ?>">
+        <input type="hidden" name='m_sub_name' value="<?php echo $getStripe['plan_name']; ?>">
+        <input type="hidden" name='m_sub_trial' value="<?php echo $getStripe['plan_trial']; ?>">
+        <input type="hidden" name='m_sub_amount' value="<?php echo $getStripe['plan_price']; ?>"> <!--subscription -->
+        <input type="hidden" name='m_sub_desc' value="<?php if(isset($getStripe['fee_description'])){ echo $getStripe['fee_description'];} else { echo $getStripe['plan_description']; } ?>"> <!--subscription -->
         <script
             src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"
             data-key="<?php echo $getStripeConfig['stripe_secret']; ?>"
-            data-amount="<?php echo $getPageFee['fee_amount']; ?>"
+            data-amount="<?php echo $getStripe['fee_amount']; ?>"
             data-name="MusicSupervisor"
-            data-description="<?php if(isset($getPageFee['description'])){ echo $getPageFee['description'];} else { echo $getPagePlan['description']; } ?>"
+            data-description="<?php if(isset($getStripe['fee_description'])){ echo $getStripe['fee_description'];} else { echo $getStripe['plan_description']; } ?>"
             data-shipping-address="true"
             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
             data-locale="auto">
         </script>
 
     </form>
+    <?php } elseif(!empty($getStripe['fee_amount']) && empty($getStripe['plan_price'])){ ?>
+        <form style="display: none" action="" class="stripe_f" method="POST">
+            <input type="hidden" name="onetime_redirect" value="/<?php echo $getStripe['fee_redirect']; ?>/"> <!-- /oto-gqkc/ -->
+            <input type="hidden" name="onetime_page_type" value="<?php echo $getStripe['page']; ?>"> <!--join-kc -->
+            <input type="hidden" name='onetime_desc' value="<?php echo $getStripe['fee_description']; ?>">
+            <input type="hidden" name='onetime_amount' value="<?php echo $getStripe['fee_amount']; ?>"> <!--one time payment -->
+            <script
+                src="https://checkout.stripe.com/checkout.js" id="join-kc" class="stripe-button"
+                data-key="<?php echo $getStripeConfig['stripe_secret']; ?>"
+                data-amount="<?php echo $getStripe['fee_amount']; ?>"
+                data-name="MusicSupervisor"
+                data-description="<?php if(isset($getStripe['fee_description'])){ echo $getStripe['fee_description'];} ?>"
+                data-shipping-address="true"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto">
+            </script>
+
+        </form>
+        <?php } ?>
 <?php } ?>

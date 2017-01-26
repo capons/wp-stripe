@@ -30,12 +30,11 @@
 	<!--Stripe script for page contains in if statement -->
 	<?php
 	global $wpdb;
-	$getStripeFeePage = $wpdb->get_results( "SELECT wp_stripe_fee.page_use FROM  wp_stripe_fee", ARRAY_A );
-	$getStripePlanPage = $wpdb->get_results( "SELECT wp_stripe_plan.page_use FROM  wp_stripe_plan", ARRAY_A );
-	$allPage = array_merge($getStripeFeePage,$getStripePlanPage);
+	$getStripePage = $wpdb->get_results( "SELECT wp_stripe_page.page FROM  wp_stripe_page", ARRAY_A );
+
 	$stripePage = array();
-	foreach($allPage as $k=>$v) {
-		$stripePage[] = $v['page_use'];
+	foreach($getStripePage as $k=>$v) {
+		$stripePage[] = $v['page'];
 	}
 
 	?>
@@ -166,11 +165,12 @@ if (in_array(get_page_uri(), $stripePage)) {
 
 	//multiple stripe form
 	$defaultPage = array('join-kc','oto-gqkc','oto-ygkc');
-	if(!in_array(get_page_uri(), $defaultPage)){
+	//if(!in_array(get_page_uri(), $defaultPage)){
 		get_template_part('includes/stripe/form/multiple-page');
-	}
+	//}
 
 	//default payment forms
+	/*
 	if (get_page_uri() == 'join-kc') {
 		get_template_part('includes/stripe/form/join-kc-form');
 	} else if (get_page_uri() == 'oto-gqkc') {
@@ -180,6 +180,7 @@ if (in_array(get_page_uri(), $stripePage)) {
 	} else {
 
 	}
+	*/
 
 }
 ?>
