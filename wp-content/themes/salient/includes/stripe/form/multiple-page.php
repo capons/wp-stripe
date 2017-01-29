@@ -3,8 +3,7 @@
 <?php
 global $wpdb;
 $getStripeConfig = $wpdb->get_row( "SELECT * FROM  wp_stripe_config", ARRAY_A );
-//unset($_SESSION['pp_users']['stripe']['subscription']);
-
+//unset($_SESSION['pp_users']);
 if(!isset($_SESSION['pp_users']['stripe']['subscription'])) {
 $getStripe = $wpdb->get_row("
         SELECT
@@ -18,12 +17,14 @@ $getStripe = $wpdb->get_row("
         WHERE page = '".get_page_uri()."'", ARRAY_A);
 
 //get_page_uri()
+
 if(!empty($getStripeConfig) && (!empty($getStripe))){
-        if(!empty($getStripe['fee_amount']) && !empty($getStripe['plan_price'])) {
+        if(!empty($getStripe['fee_amount']) || !empty($getStripe['plan_price'])) {
+
         ?>
         <form style="display: none" action="" class="stripe_f" method="POST">
             <input type="hidden" name="m_funnel" value="<?php echo $getStripe['funnel']; ?>">
-            <input type="hidden" name="m_redirect" value="/<?php echo $getStripe['fee_redirect']; ?>/"> <!-- /oto-gqkc/ -->
+            <input type="hidden" name="m_redirect" value="/<?php echo empty($getStripe['fee_redirect']) ? $getStripe['plan_redirect'] : $getStripe['fee_redirect']?>/"> <!-- /oto-gqkc/ -->
             <input type="hidden" name="m_page_type" value="<?php echo $getStripe['page']; ?>"> <!--join-kc -->
             <input type="hidden" name='m_amount' value="<?php echo $getStripe['fee_amount']; ?>"> <!--one time payment -->
             <input type="hidden" name='m_sub_id' value="<?php echo $getStripe['plan_id']; ?>">
@@ -46,7 +47,7 @@ if(!empty($getStripeConfig) && (!empty($getStripe))){
         <?php } elseif(!empty($getStripe['fee_amount']) && empty($getStripe['plan_price'])){ ?>
             <form style="display: none" action="" class="stripe_f" method="POST">
                 <input type="hidden" name="m_funnel" value="/<?php echo $getStripe['funnel']; ?>/">
-                <input type="hidden" name="onetime_redirect" value="/<?php echo $getStripe['fee_redirect']; ?>/"> <!-- /oto-gqkc/ -->
+                <input type="hidden" name="onetime_redirect" value="/<?php echo empty($getStripe['fee_redirect']) ? $getStripe['plan_redirect'] : $getStripe['fee_redirect']; ?>/"> <!-- /oto-gqkc/ -->
                 <input type="hidden" name="onetime_page_type" value="<?php echo $getStripe['page']; ?>"> <!--join-kc -->
                 <input type="hidden" name='onetime_desc' value="<?php echo $getStripe['fee_description']; ?>">
                 <input type="hidden" name='onetime_amount' value="<?php echo $getStripe['fee_amount']; ?>"> <!--one time payment -->
@@ -84,7 +85,7 @@ if(!empty($getStripeConfig) && (!empty($getStripe))){
 
         <form style="display: none" action="" class="stripe_f" method="POST">
             <input type="hidden" name="m_funnel" value="<?php echo $getStripe['funnel']; ?>">
-            <input type="hidden" name="m_redirect" value="/<?php echo $getStripe['plan_redirect']; ?>/"> <!-- /oto-gqkc/ -->
+            <input type="hidden" name="m_redirect" value="/<?php echo empty($getStripe['plan_redirect']) ? $getStripe['fee_redirect'] : $getStripe['plan_redirect']; ?>/"> <!-- /oto-gqkc/ -->
             <input type="hidden" name="m_page_type" value="<?php echo $getStripe['page']; ?>"> <!--join-kc -->
             <input type="hidden" name='m_amount' value="<?php echo $getStripe['fee_amount']; ?>"> <!--one time payment -->
             <input type="hidden" name='m_sub_id' value="<?php echo $_SESSION['pp_users']['stripe']['subscription']['id']; ?>">

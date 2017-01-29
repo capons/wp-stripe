@@ -5614,6 +5614,7 @@ function strip_request_catch()
 					'description' => $mPlanDesc
 				);
 				$charge = $pay->charge($param);
+
 				//if payment do not have PLAN
 				if (!empty($mPlanId)) {
 					if ($charge['status'] == 'succeeded') {
@@ -5672,6 +5673,7 @@ function strip_request_catch()
 									if (isset($response['id'])) {
 										if($mFunnel == 'Y') {
 											$_SESSION['pp_users']['stripe']['subscription'] = $response;
+											$_SESSION['pp_users']['stripe']['customer_id'] = $customer['id'];
 										}
 
 										//redirect if Payment Successfully
@@ -5712,6 +5714,7 @@ function strip_request_catch()
 										if($mFunnel == 'Y') {
 											//if sybscription create -> put description id to $_SESSION -> need in next step
 											$_SESSION['pp_users']['stripe']['subscription'] = $response;
+											$_SESSION['pp_users']['stripe']['customer_id'] = $customer['id'];
 										}
 
 
@@ -5759,19 +5762,46 @@ function strip_request_catch()
 					$mPlanDesc = htmlspecialchars($_POST['m_sub_desc']);
 					$mFunnel = $_POST['m_funnel'];
 
-
-
 					if(!empty($payAmount)) {
-						//create payment request
-						$pay = new Stripe();
-						$pay->url .= 'charges';
-						$param = array(
-							'amount' => $payAmount,
-							'currency' => 'usd',
-							'customer' => $customer_id,
-							'description' => $mPlanDesc
-						);
-						$charge = $pay->charge($param);
+						/*
+						 * //create customer
+				$cus = new Stripe();
+				$cus->url .= 'customers';
+				$cus->fields['email'] = $_POST['stripeEmail'];
+				$cus->fields['source'] = $_POST['stripeToken'];
+				$customer = $cus->call();
+						*/
+
+
+
+						if(!empty($customer_id)) { //if isset $customer_id
+							//create payment request
+							$pay = new Stripe();
+							$pay->url .= 'charges';
+							$param = array(
+								'amount' => $payAmount,
+								'currency' => 'usd',
+								'customer' => $customer_id,
+								'description' => $mPlanDesc
+							);
+							$charge = $pay->charge($param);
+
+						} else {
+							//if customer do not exist -> create
+							//create payment request
+							$pay = new Stripe();
+							$pay->url .= 'charges';
+							$param = array(
+								'amount' => $payAmount,
+								'currency' => 'usd',
+								'customer' => $_SESSION['pp_users']['stripe']['customer_id'],
+								'description' => $mPlanDesc
+							);
+							$charge = $pay->charge($param);
+
+						}
+
+
 						//if payment do not have PLAN
 						if ($charge['status'] == 'succeeded') {
 							//log error Payment OK ->>> And send API Request with payment parameters
@@ -5984,227 +6014,7 @@ function strip_request_catch()
 					}
 
 
-
-
-
-
-
 				}
-
-
-
-
-
-				/*
-
-
-				$plan_id = htmlspecialchars($_POST['sub_new_id']);
-			$plan_name = htmlspecialchars($_POST['sub_new_name']);
-			$amount_plan = $_POST['amount'];
-			$subscription_id = $_POST['sub_id'];
-
-
-			$redirect = $_POST['redirect'];
-
-			//if subscription isset
-			if (!empty($subscription_id)) {
-
-				$new_plan = new Stripe();
-				//check if plane exist
-				$check_plan = $new_plan->getPlan($plan_id);
-
-				if (isset($check_plan['error'])) {
-					//if no plan -> create new
-					$new_plan->url .= 'plans';
-
-
-					$plan_data = array(
-						"name" => $plan_name,
-						"id" => $plan_id,
-						"interval" => "month",
-						"currency" => "usd",
-						"amount" => $amount_plan,
-						"trial_period_days" => 30
-					);
-					//create new plan
-					$plan = $new_plan->createPlan($plan_data);
-
-
-					if (isset($plan['id'])) {
-
-						$new_sub = new Stripe();
-						$new_sub->url .= 'subscriptions/' . $subscription_id;
-						$sub_param = array(
-							"plan" => $plan_id,
-							"trial_end" => time() + 2592000, //one month
-						);
-						$update_subscription = $new_sub->subscriptionUpdate($sub_param);
-
-						//if plan update successfully
-						if (isset($update_subscription['id'])) {
-							//desctroy Stripe subscription session
-							unset($_SESSION['pp_users']['stripe']['subscription']);
-							?>
-							<script type="text/javascript">
-								var base_url = "<?php echo get_site_url(); ?>";
-								var uri = "<?php echo $redirect; ?>";
-								window.location.href = base_url + uri;
-							</script>
-							<?php
-						} else {
-							//if plan update fail
-							//log error in $update_subscription
-						}
-					}
-				} else {
-					//if plan exist
-					if (isset($check_plan['id'])) {
-						$new_sub = new Stripe();
-						$new_sub->url .= 'subscriptions/' . $subscription_id;
-						$sub_param = array(
-							"plan" => $check_plan['id'],//$plan_id
-							"trial_end" => time() + 2592000, //one month
-						);
-						$update_subscription = $new_sub->subscriptionUpdate($sub_param);
-
-
-						//if plan update successfully
-						if (isset($update_subscription['id'])) {
-							//desctroy Stripe subscription session
-							unset($_SESSION['pp_users']['stripe']['subscription']);
-							?>
-							<script type="text/javascript">
-								var base_url = "<?php echo get_site_url(); ?>";
-								var uri = "<?php echo $redirect; ?>";
-								window.location.href = base_url + uri;
-							</script>
-							<?php
-						} else {
-							//if plan update fail
-							//log error in $update_subscription
-						}
-					}
-				}
-
-			} else {
-				//if subscription do not exist
-				//create new subscription
-
-				//create customer
-				$cus = new Stripe();
-				$cus->url .= 'customers';
-				$cus->fields['email'] = $_POST['stripeEmail'];
-				$cus->fields['source'] = $_POST['stripeToken'];
-				$customer = $cus->call();
-
-
-				//check if plane exist
-				$new_plan = new Stripe();
-				$check_plan = $new_plan->getPlan($plan_id);
-
-
-				if (isset($check_plan['error'])) {
-					$new_plan->url .= 'plans';
-					$plan_data = array(
-						"name" => $plan_name,
-						"id" => $plan_id,
-						"interval" => "month",
-						"currency" => "usd",
-						"amount" => $amount_plan,
-						"trial_period_days" => 30
-					);
-					//create new plan
-					$plan = $new_plan->createPlan($plan_data);
-
-
-					if (isset($plan['id'])) {
-						//create new subscription
-						$sub = new Stripe();
-						$sub->url .= 'subscriptions';
-						$data = array(
-							"plan" => $plan_id,
-							"customer" => $customer['id'],
-							"trial_period_days" => 30
-						);
-						$response = $sub->subscription($data);
-						if (isset($response['id'])) {
-
-							//desctroy Stripe subscription session
-							unset($_SESSION['pp_users']['stripe']['subscription']);
-							//redirect if Payment Successfully
-							?>
-							<script type="text/javascript">
-								var base_url = "<?php echo get_site_url(); ?>";
-								var uri = "<?php echo $redirect; ?>";
-								window.location.href = base_url + uri;
-							</script>
-							<?php
-
-
-						} else {
-
-							//if payment fals ->>>> do log #response
-							//
-						}
-
-					}
-
-
-				} else {
-
-					// if plan exist
-					if (isset($check_plan['id'])) {
-						$sub = new Stripe();
-						$sub->url .= 'subscriptions';
-						$data = array(
-							"plan" => $check_plan['id'],
-							"customer" => $customer['id'],
-							"trial_period_days" => 30
-						);
-						$response = $sub->subscription($data);
-
-
-						if (isset($response['id'])) {
-
-							//desctroy Stripe subscription session
-							unset($_SESSION['pp_users']['stripe']['subscription']);
-							//if payment Successfully
-							?>
-							<script type="text/javascript">
-								var base_url = "<?php echo get_site_url(); ?>";
-								var uri = "<?php echo $redirect; ?>";
-								window.location.href = base_url + uri;
-							</script>
-							<?php
-
-						} else {
-							//if payment fals ->>> do log file or message $response
-
-						}
-					}
-				}
-
-
-			}
-
-
-				*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 			}
@@ -6540,6 +6350,31 @@ function test_init(){
 	$update_price_html .= '</table>';
 
 	//add new page
+	//select all price
+	$sql_pp_price = "SELECT * from wp_stripe_fee  WHERE active ='Y'";
+	$stripe_page_fee = $wpdb->get_results($sql_pp_price);
+
+	//Update plan template
+	$page_fee = '<select class="form-control" name="stripe_fee_id"><option value=""></option>';
+	$ii = 1;
+	foreach ($stripe_page_fee as $k=>$v) {
+		$page_fee.='<option value='.$v->id.'>'.$v->description.'</option>';
+		$ii++;
+	}
+	$page_fee.='</select>';
+	//select all plan
+	$sql_pp_plan = "SELECT * from wp_stripe_plan  WHERE active ='Y'";
+	$stripe_page_plan = $wpdb->get_results($sql_pp_plan);
+
+	//Update plan template
+	$page_plan = '<select class="form-control" name="stripe_plan_id"><option value=""></option>';
+	$ii = 1;
+	foreach ($stripe_page_plan as $k=>$v) {
+		$page_plan.='<option value='.$v->id.'>'.$v->plan_name.'</option>';
+		$ii++;
+	}
+	$page_plan.='</select>';
+
 	$stripe_page = '<div class="modal fade" id="add-page-m" tabindex="-1" role="dialog">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -6552,6 +6387,14 @@ function test_init(){
 								<div class="form-group">
 									<label>Page url</label>
 									<input  class="form-control"  required name="stripe_pay_page" value="">
+								 </div>
+								 <div class="form-group">
+									<label>Page Fee</label>
+									'.$page_fee.'
+								 </div>
+								 <div class="form-group">
+									<label>Page Plan</label>
+									'.$page_plan.'
 								 </div>
 								 <div class="checkbox">
 								  <label>
@@ -6780,25 +6623,37 @@ function catch_stripe_config(){
 	//create Stripe page
 	if(isset($_POST['stripe_pay_page'])) {
 
-		$plan_page = htmlspecialchars($_POST['stripe_pay_page']);
+		$s_page = htmlspecialchars($_POST['stripe_pay_page']);
+		$s_fee = intval($_POST['stripe_fee_id']);
+		$s_plan = intval($_POST['stripe_plan_id']);
+		if(empty($s_fee)){
+			$s_fee = null;
+		}
+		if(empty($s_plan)){
+			$s_plan = null;
+		}
 		if(!empty($_POST['funnel'])) {
 			$funnel = htmlspecialchars($_POST['funnel']);
 		} else {
 			$funnel = 'N';
 		}
 
-		$sql = "SELECT * from wp_stripe_page WHERE page='{$plan_page}'";
+		$sql = "SELECT * from wp_stripe_page WHERE page='{$s_page}'";
 		$stripe_page = $wpdb->get_results($sql);
 
 		if(empty($stripe_page)) {
 			$wpdb->insert(
 				'wp_stripe_page',
 				array(
-					'page' => $plan_page,
+					'page' => $s_page,
+					'fee_id' => $s_fee,
+					'plan_id' => $s_plan,
 					'is_funnel' => $funnel
 				),
 				array(
 					'%s',
+					'%d',
+					'%d',
 					'%s'
 				)
 			);
