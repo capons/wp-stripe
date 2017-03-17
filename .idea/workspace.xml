@@ -4,10 +4,8 @@
     <list default="true" id="f5f67380-edc8-4faf-a2dc-3148651c0b78" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/salient/functions.php" afterPath="$PROJECT_DIR$/wp-content/themes/salient/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php" afterPath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php" afterPath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php" afterPath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js" afterPath="$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/salient/header.php" afterPath="$PROJECT_DIR$/wp-content/themes/salient/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/sendStripeData.php" afterPath="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/sendStripeData.php" />
     </list>
     <ignored path="job.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,24 +27,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/functions.php">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.245283">
-              <caret line="5383" column="74" selection-start-line="5383" selection-start-column="74" selection-end-line="5383" selection-end-column="74" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="22" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="22" />
               <folding>
-                <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-                <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-                <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-                <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-                <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-                <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-                <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-                <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-                <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-                <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-                <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-                <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
+                <marker date="1488403281307" expanded="true" signature="920:967" placeholder="SELECT * FRO... wp_stripe_config" />
+                <marker date="1488403281307" expanded="true" signature="20776:20956" placeholder="..." />
+                <marker date="1488403281307" expanded="true" signature="20827:20944" placeholder="..." />
+                <marker date="1488403281307" expanded="true" signature="22134:22487" placeholder="..." />
+                <marker date="1488403281307" expanded="true" signature="22163:22300" placeholder="..." />
+                <marker date="1488403281307" expanded="true" signature="22337:22474" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -55,38 +47,197 @@
       <file leaf-file-name="join-kc-form.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8846154">
-              <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="51" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oto-gqkc-form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769">
-              <caret line="8" column="61" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="oto-ygkc-form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.115385">
-              <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Stripe.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Stripe.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1827957">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="51" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5642" column="0" selection-start-line="5642" selection-start-column="0" selection-end-line="5642" selection-end-column="0" />
+              <folding>
+                <marker date="1488404071641" expanded="true" signature="80431:80486" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="122954:122985" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="125784:126196" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="125870:126192" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="144434:144548" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="145078:145223" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="145716:145876" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="164635:164682" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="164855:164902" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="182616:183084" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="182676:183078" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="182762:183074" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="258163:258194" placeholder="SELECT * FRO... wp_stripe_config" />
+                <marker date="1488404071641" expanded="true" signature="258392:258420" placeholder="SELECT * fro... wp_stripe_plan" />
+                <marker date="1488404071641" expanded="true" signature="258500:258529" placeholder="SELECT * FRO... wp_stripe_config" />
+                <marker date="1488404071641" expanded="true" signature="258807:259774" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="258843:259501" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="258854:258880" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="258892:259115" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259127:259210" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259221:259315" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259326:259421" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259432:259488" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259537:259763" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259548:259750" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="259835:259863" placeholder="SELECT * fro... wp_stripe_plan" />
+                <marker date="1488404071641" expanded="true" signature="259835:259874" placeholder="SELECT * fro... wp_stripe_page" />
+                <marker date="1488404071641" expanded="true" signature="259835:259889" placeholder="SELECT * fro... wp_stripe_page" />
+                <marker date="1488404071641" expanded="true" signature="260290:261924" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260336:261916" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260366:261906" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260397:260581" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260606:261897" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260636:261683" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260665:260802" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260832:260947" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="260977:261096" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="261127:261253" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="261284:261349" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="261379:261506" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="261536:261671" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="261715:261885" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="261944:261994" placeholder="SELECT * fro... wp_stripe_page" />
+                <marker date="1488404071641" expanded="true" signature="262421:263593" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262467:263585" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262497:263575" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262528:262721" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262746:263566" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262776:263352" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262805:262936" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="262966:263077" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="263109:263178" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="263208:263339" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="263384:263554" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="263654:263681" placeholder="SELECT * fro... wp_stripe_fee" />
+                <marker date="1488404071641" expanded="true" signature="263943:264737" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="263979:264544" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="263990:264016" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264028:264175" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264187:264265" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264276:264360" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264371:264464" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264475:264531" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264580:264726" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264591:264713" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="264842:264883" placeholder="SELECT * fro... wp_stripe_fee" />
+                <marker date="1488404071641" expanded="true" signature="264842:264888" placeholder="SELECT * fro... wp_stripe_fee" />
+                <marker date="1488404071641" expanded="true" signature="265257:265304" placeholder="SELECT * fro... wp_stripe_fee" />
+                <marker date="1488404071641" expanded="true" signature="265725:266933" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="265775:266921" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="265809:266907" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="265844:266040" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266069:266894" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266103:266660" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266136:266266" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266300:266372" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266406:266480" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266512:266642" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266530:266627" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266696:266878" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="266984:267012" placeholder="SELECT * fro... wp_stripe_page" />
+                <marker date="1488404071641" expanded="true" signature="267352:267453" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267352:268001" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267388:267453" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267399:267425" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267437:267453" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267592:267648" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267697:267990" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="267708:267977" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268206:272070" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268246:268935" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268310:268551" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268342:268541" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268493:268530" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268665:268924" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268697:268914" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268725:268902" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="268974:269869" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269039:269295" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269072:269284" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269243:269272" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269405:269857" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269438:269637" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269569:269604" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269680:269844" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269755:269771" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269795:269833" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269909:270941" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="269973:270225" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270005:270215" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270177:270204" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270336:270930" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270368:270920" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270408:270704" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270444:270620" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270573:270608" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270654:270693" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270745:270908" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270820:270836" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270859:270897" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="270981:272061" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271047:271312" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271079:271302" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271255:271291" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271427:272050" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271459:271819" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271499:271807" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271535:271723" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271666:271710" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271756:271796" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271851:272040" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271891:272028" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="271978:272017" placeholder="..." />
+                <marker date="1488404071641" expanded="true" signature="272401:272432" placeholder="SELECT * FRO... wp_stripe_config" />
+                <marker date="1488404071641" expanded="true" signature="273691:273742" placeholder="SELECT * fro... wp_stripe_page" />
+                <marker date="1488404071641" expanded="true" signature="274943:275000" placeholder="SELECT * fro... wp_stripe_plan" />
+                <marker date="1488404071641" expanded="true" signature="279668:279724" placeholder="SELECT * fro... wp_stripe_fee" />
+                <marker date="1488404071641" expanded="true" signature="280979:281062" placeholder="SELECT * fro... wp_stripe_fee" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/log.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sendStripeData.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/sendStripeData.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.29259896">
+              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Log.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Log.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -110,14 +261,16 @@
         <option value="$PROJECT_DIR$/wp-config.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/stripe-form.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/salient/js/stripe-main.js" />
-        <option value="$PROJECT_DIR$/wp-content/themes/salient/header.php" />
         <option value="$PROJECT_DIR$/wp-includes/js/stripe/stripe-second-step.js" />
         <option value="$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js" />
         <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/salient/functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/salient/header.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/salient/functions.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/sendStripeData.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Log.php" />
       </list>
     </option>
   </component>
@@ -190,60 +343,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="wp-includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stripe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="wp-content" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -288,13 +387,69 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="job" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="job" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="salient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="job" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="job" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="salient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stripe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../angular-front" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
   </component>
@@ -339,27 +494,35 @@
       <option name="number" value="Default" />
       <updated>1483771867641</updated>
     </task>
+    <task id="LOCAL-00001" summary="-mf">
+      <created>1485719000460</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1485719000460</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30484116" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22401172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -380,233 +543,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="42" selection-start-line="157" selection-start-column="42" selection-end-line="157" selection-end-column="42" />
-          <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5467" column="50" selection-start-line="5467" selection-start-column="42" selection-end-line="5467" selection-end-column="50" />
-          <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="61" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="42" selection-start-line="157" selection-start-column="42" selection-end-line="157" selection-end-column="42" />
-          <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5388" column="85" selection-start-line="5388" selection-start-column="85" selection-end-line="5388" selection-end-column="85" />
-          <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="91" selection-start-line="9" selection-start-column="91" selection-end-line="9" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="91" selection-start-line="9" selection-start-column="91" selection-end-line="9" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5388" column="85" selection-start-line="5388" selection-start-column="85" selection-end-line="5388" selection-end-column="85" />
-          <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -621,13 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="32" selection-end-column="88" />
-          <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -635,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,18 +576,144 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="80431:80486" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="122954:122985" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125784:126196" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125870:126192" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="144434:144548" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145078:145223" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145716:145876" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164635:164682" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164855:164902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182616:183084" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182676:183078" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258163:258194" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258392:258420" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="258500:258529" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258807:259774" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258843:259501" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258854:258880" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258892:259115" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259127:259210" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259221:259315" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259326:259421" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259432:259488" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259537:259763" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259548:259750" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259835:259863" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="259835:259874" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="259835:259889" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="260290:261924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260336:261916" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260366:261906" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260397:260581" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260606:261897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260636:261683" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260665:260802" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260832:260947" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260977:261096" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261127:261253" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261284:261349" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261379:261506" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261536:261671" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261715:261885" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261944:261994" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="262421:263593" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262467:263585" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262497:263575" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262528:262721" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262746:263566" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262776:263352" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262805:262936" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262966:263077" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263109:263178" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263208:263339" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263384:263554" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263654:263681" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="263943:264737" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263979:264544" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263990:264016" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264028:264175" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264187:264265" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264276:264360" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264371:264464" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264475:264531" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264580:264726" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264591:264713" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264842:264883" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="264842:264888" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265257:265304" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265725:266933" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265775:266921" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265809:266907" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265844:266040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266069:266894" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266103:266660" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266136:266266" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266300:266372" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266406:266480" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266512:266642" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266530:266627" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266696:266878" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266984:267012" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="267352:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267352:268001" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267388:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267399:267425" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267437:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267592:267648" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267697:267990" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267708:267977" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268206:272070" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268246:268935" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268310:268551" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268342:268541" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268493:268530" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268665:268924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268697:268914" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268725:268902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268974:269869" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269039:269295" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269072:269284" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269243:269272" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269405:269857" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269438:269637" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269569:269604" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269680:269844" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269755:269771" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269795:269833" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269909:270941" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269973:270225" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270005:270215" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270177:270204" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270336:270930" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270368:270920" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270408:270704" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270444:270620" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270573:270608" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270654:270693" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270745:270908" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270820:270836" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270859:270897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270981:272061" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271047:271312" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271079:271302" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271255:271291" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271427:272050" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271459:271819" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271499:271807" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271535:271723" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271666:271710" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271756:271796" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271851:272040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271891:272028" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271978:272017" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="272401:272432" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="273691:273742" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="274943:275000" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="279668:279724" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="280979:281062" placeholder="SELECT * fro... wp_stripe_fee" />
           </folding>
         </state>
       </provider>
@@ -664,7 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="39" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -679,13 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -694,18 +744,144 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="80431:80486" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="122954:122985" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125784:126196" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125870:126192" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="144434:144548" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145078:145223" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145716:145876" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164635:164682" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164855:164902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182616:183084" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182676:183078" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258163:258194" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258392:258420" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="258500:258529" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258807:259774" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258843:259501" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258854:258880" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258892:259115" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259127:259210" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259221:259315" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259326:259421" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259432:259488" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259537:259763" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259548:259750" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259835:259863" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="259835:259874" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="259835:259889" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="260290:261924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260336:261916" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260366:261906" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260397:260581" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260606:261897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260636:261683" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260665:260802" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260832:260947" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260977:261096" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261127:261253" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261284:261349" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261379:261506" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261536:261671" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261715:261885" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261944:261994" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="262421:263593" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262467:263585" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262497:263575" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262528:262721" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262746:263566" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262776:263352" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262805:262936" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262966:263077" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263109:263178" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263208:263339" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263384:263554" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263654:263681" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="263943:264737" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263979:264544" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263990:264016" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264028:264175" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264187:264265" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264276:264360" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264371:264464" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264475:264531" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264580:264726" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264591:264713" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264842:264883" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="264842:264888" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265257:265304" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265725:266933" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265775:266921" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265809:266907" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265844:266040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266069:266894" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266103:266660" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266136:266266" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266300:266372" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266406:266480" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266512:266642" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266530:266627" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266696:266878" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266984:267012" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="267352:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267352:268001" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267388:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267399:267425" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267437:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267592:267648" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267697:267990" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267708:267977" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268206:272070" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268246:268935" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268310:268551" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268342:268541" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268493:268530" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268665:268924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268697:268914" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268725:268902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268974:269869" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269039:269295" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269072:269284" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269243:269272" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269405:269857" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269438:269637" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269569:269604" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269680:269844" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269755:269771" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269795:269833" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269909:270941" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269973:270225" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270005:270215" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270177:270204" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270336:270930" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270368:270920" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270408:270704" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270444:270620" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270573:270608" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270654:270693" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270745:270908" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270820:270836" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270859:270897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270981:272061" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271047:271312" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271079:271302" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271255:271291" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271427:272050" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271459:271819" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271499:271807" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271535:271723" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271666:271710" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271756:271796" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271851:272040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271891:272028" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271978:272017" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="272401:272432" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="273691:273742" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="274943:275000" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="279668:279724" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="280979:281062" placeholder="SELECT * fro... wp_stripe_fee" />
           </folding>
         </state>
       </provider>
@@ -714,7 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="39" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -729,13 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,7 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -752,18 +919,144 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="5240" column="0" selection-start-line="5240" selection-start-column="0" selection-end-line="5240" selection-end-column="0" />
           <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="80431:80486" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="122954:122985" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125784:126196" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125870:126192" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="144434:144548" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145078:145223" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145716:145876" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164635:164682" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164855:164902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182616:183084" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182676:183078" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258163:258194" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258392:258420" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="258500:258529" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258807:259774" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258843:259501" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258854:258880" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258892:259115" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259127:259210" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259221:259315" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259326:259421" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259432:259488" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259537:259763" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259548:259750" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259835:259863" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="259835:259874" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="259835:259889" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="260290:261924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260336:261916" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260366:261906" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260397:260581" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260606:261897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260636:261683" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260665:260802" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260832:260947" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260977:261096" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261127:261253" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261284:261349" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261379:261506" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261536:261671" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261715:261885" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261944:261994" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="262421:263593" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262467:263585" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262497:263575" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262528:262721" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262746:263566" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262776:263352" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262805:262936" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262966:263077" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263109:263178" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263208:263339" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263384:263554" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263654:263681" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="263943:264737" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263979:264544" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263990:264016" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264028:264175" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264187:264265" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264276:264360" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264371:264464" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264475:264531" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264580:264726" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264591:264713" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264842:264883" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="264842:264888" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265257:265304" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265725:266933" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265775:266921" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265809:266907" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265844:266040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266069:266894" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266103:266660" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266136:266266" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266300:266372" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266406:266480" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266512:266642" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266530:266627" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266696:266878" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266984:267012" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="267352:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267352:268001" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267388:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267399:267425" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267437:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267592:267648" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267697:267990" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267708:267977" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268206:272070" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268246:268935" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268310:268551" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268342:268541" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268493:268530" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268665:268924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268697:268914" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268725:268902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268974:269869" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269039:269295" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269072:269284" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269243:269272" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269405:269857" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269438:269637" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269569:269604" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269680:269844" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269755:269771" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269795:269833" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269909:270941" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269973:270225" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270005:270215" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270177:270204" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270336:270930" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270368:270920" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270408:270704" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270444:270620" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270573:270608" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270654:270693" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270745:270908" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270820:270836" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270859:270897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270981:272061" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271047:271312" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271079:271302" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271255:271291" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271427:272050" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271459:271819" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271499:271807" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271535:271723" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271666:271710" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271756:271796" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271851:272040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271891:272028" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271978:272017" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="272401:272432" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="273691:273742" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="274943:275000" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="279668:279724" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="280979:281062" placeholder="SELECT * fro... wp_stripe_fee" />
           </folding>
         </state>
       </provider>
@@ -777,7 +1070,161 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.865591">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/js/infinitescroll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/rest-api/class-wp-rest-request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/Requests/Auth/Basic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/admin-header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/link.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/load-styles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/load-scripts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/options-head.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/includes/file.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/about.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/js/nav-menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/includes/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/admin-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26333907">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17039587">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/admin-footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.029259896">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -789,118 +1236,239 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
+    <entry file="file://$PROJECT_DIR$/wp-admin/js/stripe-config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8527397">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.47611204">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-config.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21288015">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.32185885">
+          <caret line="11" column="65" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/js/infinitescroll.js">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.335727">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.38037866">
+          <caret line="13" column="114" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="114" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/index.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/multiple-page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7114695">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.14629948">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/rest-api/class-wp-rest-request.php">
+    <entry file="file://$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.306452">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3360791">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/Requests/Auth/Basic.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3154122">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="51" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="51" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="42" selection-start-line="157" selection-start-column="42" selection-end-line="157" selection-end-column="42" />
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="22" />
           <folding>
-            <marker date="1483863226043" expanded="true" signature="20188:20368" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="20239:20356" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21546:21899" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21575:21712" placeholder="..." />
-            <marker date="1483863226043" expanded="true" signature="21749:21886" placeholder="..." />
+            <marker date="1488403281307" expanded="true" signature="920:967" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488403281307" expanded="true" signature="20776:20956" placeholder="..." />
+            <marker date="1488403281307" expanded="true" signature="20827:20944" placeholder="..." />
+            <marker date="1488403281307" expanded="true" signature="22134:22487" placeholder="..." />
+            <marker date="1488403281307" expanded="true" signature="22163:22300" placeholder="..." />
+            <marker date="1488403281307" expanded="true" signature="22337:22474" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/js/stripe/stripe-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17465754">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.245283">
-          <caret line="5383" column="74" selection-start-line="5383" selection-start-column="74" selection-end-line="5383" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5642" column="0" selection-start-line="5642" selection-start-column="0" selection-end-line="5642" selection-end-column="0" />
           <folding>
-            <marker date="1484239434945" expanded="true" signature="80431:80486" placeholder="SELECT ID FR... ${$prefix}" />
-            <marker date="1484239434945" expanded="true" signature="122954:122985" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125784:126196" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="125870:126192" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="144434:144548" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145078:145223" placeholder="SELECT post_... ${$wpdb-&gt;postmeta}" />
-            <marker date="1484239434945" expanded="true" signature="145716:145876" placeholder="SELECT * FRO... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164635:164682" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="164855:164902" placeholder="SELECT p.* F... ${$wpdb-&gt;posts}" />
-            <marker date="1484239434945" expanded="true" signature="182616:183084" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182676:183078" placeholder="..." />
-            <marker date="1484239434945" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="80431:80486" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="122954:122985" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125784:126196" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="125870:126192" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="144434:144548" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145078:145223" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="145716:145876" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164635:164682" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="164855:164902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182616:183084" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182676:183078" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="182762:183074" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258163:258194" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258392:258420" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="258500:258529" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="258807:259774" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258843:259501" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258854:258880" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="258892:259115" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259127:259210" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259221:259315" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259326:259421" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259432:259488" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259537:259763" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259548:259750" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="259835:259863" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="259835:259874" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="259835:259889" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="260290:261924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260336:261916" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260366:261906" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260397:260581" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260606:261897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260636:261683" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260665:260802" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260832:260947" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="260977:261096" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261127:261253" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261284:261349" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261379:261506" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261536:261671" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261715:261885" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="261944:261994" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="262421:263593" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262467:263585" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262497:263575" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262528:262721" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262746:263566" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262776:263352" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262805:262936" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="262966:263077" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263109:263178" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263208:263339" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263384:263554" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263654:263681" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="263943:264737" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263979:264544" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="263990:264016" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264028:264175" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264187:264265" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264276:264360" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264371:264464" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264475:264531" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264580:264726" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264591:264713" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="264842:264883" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="264842:264888" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265257:265304" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="265725:266933" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265775:266921" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265809:266907" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="265844:266040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266069:266894" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266103:266660" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266136:266266" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266300:266372" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266406:266480" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266512:266642" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266530:266627" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266696:266878" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="266984:267012" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="267352:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267352:268001" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267388:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267399:267425" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267437:267453" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267592:267648" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267697:267990" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="267708:267977" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268206:272070" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268246:268935" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268310:268551" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268342:268541" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268493:268530" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268665:268924" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268697:268914" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268725:268902" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="268974:269869" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269039:269295" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269072:269284" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269243:269272" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269405:269857" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269438:269637" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269569:269604" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269680:269844" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269755:269771" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269795:269833" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269909:270941" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="269973:270225" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270005:270215" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270177:270204" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270336:270930" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270368:270920" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270408:270704" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270444:270620" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270573:270608" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270654:270693" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270745:270908" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270820:270836" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270859:270897" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="270981:272061" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271047:271312" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271079:271302" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271255:271291" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271427:272050" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271459:271819" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271499:271807" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271535:271723" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271666:271710" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271756:271796" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271851:272040" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271891:272028" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="271978:272017" placeholder="..." />
+            <marker date="1488404071641" expanded="true" signature="272401:272432" placeholder="SELECT * FRO... wp_stripe_config" />
+            <marker date="1488404071641" expanded="true" signature="273691:273742" placeholder="SELECT * fro... wp_stripe_page" />
+            <marker date="1488404071641" expanded="true" signature="274943:275000" placeholder="SELECT * fro... wp_stripe_plan" />
+            <marker date="1488404071641" expanded="true" signature="279668:279724" placeholder="SELECT * fro... wp_stripe_fee" />
+            <marker date="1488404071641" expanded="true" signature="280979:281062" placeholder="SELECT * fro... wp_stripe_fee" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/join-kc-form.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Log.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154">
-          <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-gqkc-form.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/sendStripeData.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="61" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/form/oto-ygkc-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.115385">
-          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/salient/includes/stripe/Stripe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1827957">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.29259896">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
           <folding />
         </state>
       </provider>

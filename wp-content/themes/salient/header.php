@@ -29,6 +29,7 @@
 
 	<!--Stripe script for page contains in if statement -->
 	<?php
+	session_destroy();
 	global $wpdb;
 	$getStripePage = $wpdb->get_results( "SELECT wp_stripe_page.page FROM  wp_stripe_page", ARRAY_A );
 

@@ -5180,7 +5180,7 @@ function strip_request_catch()
 	//load Stripe library
 	require_once locate_template('includes/stripe/Stripe.php');
 	//load library to send Stripe customer payment information
-	//require_once locate_template( 'includes/stripe/sendStripeData.php' );
+	require_once locate_template( 'includes/stripe/sendStripeData.php' );
 
 	//if (isset($_POST['stripeEmail']) || isset($_POST['page_type'])) {
 	if(isset($_POST['m_page_type'])) {
@@ -5604,16 +5604,31 @@ function strip_request_catch()
 				$cus->fields['source'] = $_POST['stripeToken'];
 				$customer = $cus->call();
 
-				//create payment request
-				$pay = new Stripe();
-				$pay->url .= 'charges';
-				$param = array(
-					'amount' => $payAmount,
-					'currency' => 'usd',
-					'customer' => $customer['id'],
-					'description' => $mPlanDesc
-				);
-				$charge = $pay->charge($param);
+				//object to API - to create user
+				$userToApi = array();
+
+				if(!empty($payAmount)) {
+					//create payment request
+					$pay = new Stripe();
+					$pay->url .= 'charges';
+					$param = array(
+						'amount' => $payAmount,
+						'currency' => 'usd',
+						'customer' => $customer['id'],
+						'description' => $mPlanDesc
+					);
+					$charge = $pay->charge($param);
+					$userToApi['one_time_payment'] = $charge;
+				} else {
+					$userToApi['one_time_payment'] = '';
+				}
+				//add customer to Api request
+				$userToApi['user'] = $customer;
+
+
+
+
+
 
 				//if payment do not have PLAN
 				if (!empty($mPlanId)) {
@@ -5621,6 +5636,12 @@ function strip_request_catch()
 						$_SESSION['pp_users']['stripe']['customer'] = $customer;
 						//log error Payment OK ->>> And send API Request with payment parameters
 						//if no plan stop
+						// $customerData = $cus->getCustomer($customer['id']);
+						$thirdApi = new sendStripeData();
+						$customerSend = $thirdApi->sendCustomerPayment('user/stripe', $userToApi);
+						//if customerSend => true --- send data to API request!!!
+
+
 						if (empty($mPlanId)) {
 							?>
 							<script type="text/javascript">
@@ -5670,11 +5691,19 @@ function strip_request_catch()
 										"trial_period_days" => $mPlanTrial
 									);
 									$response = $sub->subscription($data);
+									//add customer data to api request
+									$userToApi['user_subscription'] = $response;
+
 									if (isset($response['id'])) {
 										if($mFunnel == 'Y') {
 											$_SESSION['pp_users']['stripe']['subscription'] = $response;
 											$_SESSION['pp_users']['stripe']['customer_id'] = $customer['id'];
 										}
+
+										$thirdApi = new sendStripeData();
+										$customerSend = $thirdApi->sendCustomerPayment('user/stripe', $userToApi);
+										//if customerSend => true --- send data to API request!!!
+
 
 										//redirect if Payment Successfully
 										?>
@@ -5709,363 +5738,392 @@ function strip_request_catch()
 									$response = $sub->subscription($data);
 
 
-									if (isset($response['id'])) {
-
-										if($mFunnel == 'Y') {
-											//if sybscription create -> put description id to $_SESSION -> need in next step
-											$_SESSION['pp_users']['stripe']['subscription'] = $response;
-											$_SESSION['pp_users']['stripe']['customer_id'] = $customer['id'];
-										}
-
-
-										//if payment Successfully
-										?>
-										<script type="text/javascript">
-											var base_url = "<?php echo get_site_url(); ?>";
-											var uri = "<?php echo $mRedirect; ?>";
-											window.location.href = base_url + uri;
-										</script>
-										<?php
-
-									} else {
-										//if payment fals ->>> do log file or message $response
-
-									}
-								}
-							}
-
-
-						} else {
-							//Log error (or Plan id do not exist or Payment charge false)
-						}
-
-
-					//}
-
-
-				}
-			} else {
-				//if funnel exist
-				if(isset($_POST['m_funnel'])){
-					$plan_id = htmlspecialchars($_POST['new_plan_name']);
-					$subscription_id = $_POST['m_sub_id'];
-					$plan_name = htmlspecialchars($_POST['m_sub_name']);
-					$amount_plan = $_POST['m_sub_amount'];
-					$redirect = $_POST['m_redirect'];
-					$customer_id = $_POST['m_customer_id'];
-
-					$payAmount = intval($_POST['m_amount']);
-					$mRedirect = htmlspecialchars($_POST['m_redirect']);
-					$mPlanName = htmlspecialchars($_POST['m_sub_name']);
-					$mPlanAmount = intval($_POST['m_sub_amount']);
-					$mPlanTrial = intval($_POST['m_sub_trial']);
-					$mPlanDesc = htmlspecialchars($_POST['m_sub_desc']);
-					$mFunnel = $_POST['m_funnel'];
-
-					if(!empty($payAmount)) {
-						/*
-						 * //create customer
-				$cus = new Stripe();
-				$cus->url .= 'customers';
-				$cus->fields['email'] = $_POST['stripeEmail'];
-				$cus->fields['source'] = $_POST['stripeToken'];
-				$customer = $cus->call();
-						*/
-
-
-
-						if(!empty($customer_id)) { //if isset $customer_id
-							//create payment request
-							$pay = new Stripe();
-							$pay->url .= 'charges';
-							$param = array(
-								'amount' => $payAmount,
-								'currency' => 'usd',
-								'customer' => $customer_id,
-								'description' => $mPlanDesc
-							);
-							$charge = $pay->charge($param);
-
-						} else {
-							//if customer do not exist -> create
-							//create payment request
-							$pay = new Stripe();
-							$pay->url .= 'charges';
-							$param = array(
-								'amount' => $payAmount,
-								'currency' => 'usd',
-								'customer' => $_SESSION['pp_users']['stripe']['customer_id'],
-								'description' => $mPlanDesc
-							);
-							$charge = $pay->charge($param);
-
-						}
-
-
-						//if payment do not have PLAN
-						if ($charge['status'] == 'succeeded') {
-							//log error Payment OK ->>> And send API Request with payment parameters
-							//Log or send api request payment succeeded
-							//if plan do not exist
-							if(empty($plan_id)) {
-								if($mFunnel == 'N') {
-									unset($_SESSION['pp_users']);
-								}
-								?>
-								<script type="text/javascript">
-									var base_url = "<?php echo get_site_url(); ?>";
-									var uri = "<?php echo $mRedirect; ?>";
-									window.location.href = base_url + uri;
-								</script>
-								<?php
-							}
-
-						}
-					}
-					//if no new plan id stop
-					if(!empty($plan_id)) {
-						if (!empty($subscription_id)) {
-
-							$new_plan = new Stripe();
-							//check if plane exist
-							$check_plan = $new_plan->getPlan($plan_id);
-
-							if (isset($check_plan['error'])) {
-								//if no plan -> create new
-								$new_plan->url .= 'plans';
-
-
-								$plan_data = array(
-									"name" => $plan_name,
-									"id" => $plan_id,
-									"interval" => "month",
-									"currency" => "usd",
-									"amount" => $amount_plan,
-									"trial_period_days" => 30
-								);
-								//create new plan
-								$plan = $new_plan->createPlan($plan_data);
-
-
-								if (isset($plan['id'])) {
-
-									$new_sub = new Stripe();
-									$new_sub->url .= 'subscriptions/' . $subscription_id;
-									$sub_param = array(
-										"plan" => $plan_id,
-										"trial_end" => time() + 2592000, //one month
-									);
-									$update_subscription = $new_sub->subscriptionUpdate($sub_param);
-
-									//if plan update successfully
-									if (isset($update_subscription['id'])) {
-										//destroy Stripe subscription session
-										if($mFunnel == 'N') {
-											unset($_SESSION['pp_users']);
-										}
-										?>
-										<script type="text/javascript">
-											var base_url = "<?php echo get_site_url(); ?>";
-											var uri = "<?php echo $redirect; ?>";
-											window.location.href = base_url + uri;
-										</script>
-										<?php
-									} else {
-										//if plan update fail
-										//log error in $update_subscription
-									}
-								}
-							} else {
-								//if plan exist
-								if (isset($check_plan['id'])) {
-									$new_sub = new Stripe();
-									$new_sub->url .= 'subscriptions/' . $subscription_id;
-									$sub_param = array(
-										"plan" => $check_plan['id'],//$plan_id
-										"trial_end" => time() + 2592000, //one month
-									);
-									$update_subscription = $new_sub->subscriptionUpdate($sub_param);
-
-
-									//if plan update successfully
-									if (isset($update_subscription['id'])) {
-										//desctroy Stripe subscription session
-										if($mFunnel == 'N') {
-											unset($_SESSION['pp_users']);
-										}
-										?>
-										<script type="text/javascript">
-											var base_url = "<?php echo get_site_url(); ?>";
-											var uri = "<?php echo $redirect; ?>";
-											window.location.href = base_url + uri;
-										</script>
-										<?php
-									} else {
-										//if plan update fail
-										//log error in $update_subscription
-									}
-								}
-							}
-
-						} else {
-							//if subscription do not exist
-							//create new subscription
-
-							//create customer
-							$cus = new Stripe();
-							$cus->url .= 'customers';
-							$cus->fields['email'] = $_POST['stripeEmail'];
-							$cus->fields['source'] = $_POST['stripeToken'];
-							$customer = $cus->call();
-
-
-							//check if plane exist
-							$new_plan = new Stripe();
-							$check_plan = $new_plan->getPlan($plan_id);
-
-
-							if (isset($check_plan['error'])) {
-								$new_plan->url .= 'plans';
-								$plan_data = array(
-									"name" => $plan_name,
-									"id" => $plan_id,
-									"interval" => "month",
-									"currency" => "usd",
-									"amount" => $amount_plan,
-									"trial_period_days" => 30
-								);
-								//create new plan
-								$plan = $new_plan->createPlan($plan_data);
-
-
-								if (isset($plan['id'])) {
-									//create new subscription
-									$sub = new Stripe();
-									$sub->url .= 'subscriptions';
-									$data = array(
-										"plan" => $plan_id,
-										"customer" => $customer['id'],
-										"trial_period_days" => 30
-									);
-									$response = $sub->subscription($data);
-									if (isset($response['id'])) {
-
-										//desctroy Stripe subscription session
-										if($mFunnel == 'N') {
-											unset($_SESSION['pp_users']);
-										}
-										//redirect if Payment Successfully
-										?>
-										<script type="text/javascript">
-											var base_url = "<?php echo get_site_url(); ?>";
-											var uri = "<?php echo $redirect; ?>";
-											window.location.href = base_url + uri;
-										</script>
-										<?php
-
-
-									} else {
-
-										//if payment fals ->>>> do log #response
-										//
-									}
-
-								}
-
-
-							} else {
-
-								// if plan exist
-								if (isset($check_plan['id'])) {
-									$sub = new Stripe();
-									$sub->url .= 'subscriptions';
-									$data = array(
-										"plan" => $check_plan['id'],
-										"customer" => $customer['id'],
-										"trial_period_days" => 30
-									);
-									$response = $sub->subscription($data);
-
-
-									if (isset($response['id'])) {
-
-										//desctroy Stripe subscription session
-										if($mFunnel == 'N') {
-											unset($_SESSION['pp_users']);
-										}
-										//if payment Successfully
-										?>
-										<script type="text/javascript">
-											var base_url = "<?php echo get_site_url(); ?>";
-											var uri = "<?php echo $redirect; ?>";
-											window.location.href = base_url + uri;
-										</script>
-										<?php
-
-									} else {
-										//if payment fals ->>> do log file or message $response
-
-									}
-								}
-							}
-
-
-						}
-					}
-
-
-				}
-
-
-			}
-		}
-
-
-
-
-
-		//multiple page One Time Payment
-		if (isset($_POST['onetime_amount'])) {
-			$payAmount = intval($_POST['onetime_amount']);
-			$mRedirect = htmlspecialchars($_POST['onetime_redirect']);
-
-			$payDesc = htmlspecialchars($_POST['onetime_desc']);
-			//create customer
-			$cus = new Stripe();
-			$cus->url .= 'customers';
-			$cus->fields['email'] = $_POST['stripeEmail'];
-			$cus->fields['source'] = $_POST['stripeToken'];
-			$customer = $cus->call();
-
-			//create payment request
-			$pay = new Stripe();
-			$pay->url .= 'charges';
-			$param = array(
-				'amount' => $payAmount,
-				'currency' => 'usd',
-				'customer' => $customer['id'],
-				'description' => $payDesc
-			);
-			$charge = $pay->charge($param);
-			if ($charge['status'] == 'succeeded') {
-				//log error Payment OK ->>> And send API Request with payment parameters
-				?>
-				<script type="text/javascript">
-					var base_url = "<?php echo get_site_url(); ?>";
-					var uri = "<?php echo $mRedirect; ?>";
-					window.location.href = base_url + uri;
-				</script>
-				<?php
-
-			}
-		}
-	}
-}
-add_action( 'init', 'strip_request_catch' );
-
-
-
-/*admin panel styles*/
+									$userToApi['user_subscription'] = $response;
+
+
+									$thirdApi = new sendStripeData();
+									$customerSend = $thirdApi->sendCustomerPayment('user/stripe', $userToApi);
+									//if customerSend => true --- send data to API request!!!
+
+
+
+                                                        if (isset($response['id'])) {
+
+                                                            if($mFunnel == 'Y') {
+                                                                //if sybscription create -> put description id to $_SESSION -> need in next step
+                                                                $_SESSION['pp_users']['stripe']['subscription'] = $response;
+                                                                $_SESSION['pp_users']['stripe']['customer_id'] = $customer['id'];
+                                                            }
+
+
+                                                            //if payment Successfully
+                                                            ?>
+                                                            <script type="text/javascript">
+                                                                var base_url = "<?php echo get_site_url(); ?>";
+                                                                var uri = "<?php echo $mRedirect; ?>";
+                                                                window.location.href = base_url + uri;
+                                                            </script>
+                                                            <?php
+
+                                                        } else {
+                                                            //if payment fals ->>> do log file or message $response
+
+                                                        }
+                                                    }
+                                                }
+
+
+                                            } else {
+                                                //Log error (or Plan id do not exist or Payment charge false)
+                                            }
+
+
+                                        //}
+
+
+                                    }
+                                } else {
+                                    //if funnel exist
+                                    if(isset($_POST['m_funnel'])){
+                                        $plan_id = htmlspecialchars($_POST['new_plan_name']);
+                                        $subscription_id = $_POST['m_sub_id'];
+                                        $plan_name = htmlspecialchars($_POST['m_sub_name']);
+                                        $amount_plan = $_POST['m_sub_amount'];
+                                        $redirect = $_POST['m_redirect'];
+                                        $customer_id = $_POST['m_customer_id'];
+
+                                        $payAmount = intval($_POST['m_amount']);
+                                        $mRedirect = htmlspecialchars($_POST['m_redirect']);
+                                        $mPlanName = htmlspecialchars($_POST['m_sub_name']);
+                                        $mPlanAmount = intval($_POST['m_sub_amount']);
+                                        $mPlanTrial = intval($_POST['m_sub_trial']);
+                                        $mPlanDesc = htmlspecialchars($_POST['m_sub_desc']);
+                                        $mFunnel = $_POST['m_funnel'];
+
+										//object to API - to create user
+										$userToApi = array();
+
+                                        if(!empty($payAmount)) {
+
+
+                                            if(!empty($customer_id)) { //if isset $customer_id
+                                                //create payment request
+                                                $pay = new Stripe();
+                                                $pay->url .= 'charges';
+                                                $param = array(
+                                                    'amount' => $payAmount,
+                                                    'currency' => 'usd',
+                                                    'customer' => $customer_id,
+                                                    'description' => $mPlanDesc
+                                                );
+                                                $charge = $pay->charge($param);
+
+                                            } else {
+                                                //if customer do not exist -> create
+                                                //create payment request
+                                                $pay = new Stripe();
+                                                $pay->url .= 'charges';
+                                                $param = array(
+                                                    'amount' => $payAmount,
+                                                    'currency' => 'usd',
+                                                    'customer' => $_SESSION['pp_users']['stripe']['customer_id'],
+                                                    'description' => $mPlanDesc
+                                                );
+                                                $charge = $pay->charge($param);
+
+                                            }
+
+
+
+                                            //if payment do not have PLAN
+                                            if ($charge['status'] == 'succeeded') {
+
+												//add customer to Api request
+												$userToApi['user'] = $_SESSION['pp_users']['stripe'];
+
+												$thirdApi = new sendStripeData();
+												$customerSend = $thirdApi->sendCustomerPayment('user/stripe_update', $userToApi);
+                                                //log error Payment OK ->>> And send API Request with payment parameters
+                                                //Log or send api request payment succeeded
+                                                //if plan do not exist
+                                                if(empty($plan_id)) {
+                                                    if($mFunnel == 'N') {
+                                                        unset($_SESSION['pp_users']);
+                                                    }
+                                                    ?>
+
+
+                                                    <script type="text/javascript">
+                                                        var base_url = "<?php echo get_site_url(); ?>";
+                                                        var uri = "<?php echo $mRedirect; ?>";
+                                                        window.location.href = base_url + uri;
+                                                    </script>
+                                                    <?php
+                                                }
+
+                                            }
+                                        }
+                                        //if no new plan id stop
+                                        if(!empty($plan_id)) {
+                                            if (!empty($subscription_id)) {
+
+                                                $new_plan = new Stripe();
+                                                //check if plane exist
+                                                $check_plan = $new_plan->getPlan($plan_id);
+
+                                                if (isset($check_plan['error'])) {
+                                                    //if no plan -> create new
+                                                    $new_plan->url .= 'plans';
+
+
+                                                    $plan_data = array(
+                                                        "name" => $plan_name,
+                                                        "id" => $plan_id,
+                                                        "interval" => "month",
+                                                        "currency" => "usd",
+                                                        "amount" => $amount_plan,
+                                                        "trial_period_days" => 30
+                                                    );
+                                                    //create new plan
+                                                    $plan = $new_plan->createPlan($plan_data);
+
+
+                                                    if (isset($plan['id'])) {
+
+                                                        $new_sub = new Stripe();
+                                                        $new_sub->url .= 'subscriptions/' . $subscription_id;
+                                                        $sub_param = array(
+                                                            "plan" => $plan_id,
+                                                            "trial_end" => time() + 2592000, //one month
+                                                        );
+                                                        $update_subscription = $new_sub->subscriptionUpdate($sub_param);
+
+                                                        //if plan update successfully
+                                                        if (isset($update_subscription['id'])) {
+
+															//add customer data to api request
+															$userToApi['user_subscription'] = $update_subscription;
+															$thirdApi = new sendStripeData();
+															$customerSend = $thirdApi->sendCustomerPayment('user/stripe_update', $userToApi);
+                                                            //destroy Stripe subscription session
+                                                            if($mFunnel == 'N') {
+                                                                unset($_SESSION['pp_users']);
+                                                            }
+                                                            ?>
+                                                            <script type="text/javascript">
+                                                                var base_url = "<?php echo get_site_url(); ?>";
+                                                                var uri = "<?php echo $redirect; ?>";
+                                                                window.location.href = base_url + uri;
+                                                            </script>
+                                                            <?php
+                                                        } else {
+                                                            //if plan update fail
+                                                            //log error in $update_subscription
+                                                        }
+                                                    }
+                                                } else {
+                                                    //if plan exist
+                                                    if (isset($check_plan['id'])) {
+                                                        $new_sub = new Stripe();
+                                                        $new_sub->url .= 'subscriptions/' . $subscription_id;
+                                                        $sub_param = array(
+                                                            "plan" => $check_plan['id'],//$plan_id
+                                                            "trial_end" => time() + 2592000, //one month
+                                                        );
+                                                        $update_subscription = $new_sub->subscriptionUpdate($sub_param);
+
+
+                                                        //if plan update successfully
+                                                        if (isset($update_subscription['id'])) {
+                                                            //desctroy Stripe subscription session
+                                                            if($mFunnel == 'N') {
+                                                                unset($_SESSION['pp_users']);
+                                                            }
+                                                            ?>
+                                                            <script type="text/javascript">
+                                                                var base_url = "<?php echo get_site_url(); ?>";
+                                                                var uri = "<?php echo $redirect; ?>";
+                                                                window.location.href = base_url + uri;
+                                                            </script>
+                                                            <?php
+                                                        } else {
+                                                            //if plan update fail
+                                                            //log error in $update_subscription
+                                                        }
+                                                    }
+                                                }
+
+                                            } else {
+                                                //if subscription do not exist
+                                                //create new subscription
+
+                                                //create customer
+                                                $cus = new Stripe();
+                                                $cus->url .= 'customers';
+                                                $cus->fields['email'] = $_POST['stripeEmail'];
+                                                $cus->fields['source'] = $_POST['stripeToken'];
+                                                $customer = $cus->call();
+
+
+                                                //check if plane exist
+                                                $new_plan = new Stripe();
+                                                $check_plan = $new_plan->getPlan($plan_id);
+
+
+                                                if (isset($check_plan['error'])) {
+                                                    $new_plan->url .= 'plans';
+                                                    $plan_data = array(
+                                                        "name" => $plan_name,
+                                                        "id" => $plan_id,
+                                                        "interval" => "month",
+                                                        "currency" => "usd",
+                                                        "amount" => $amount_plan,
+                                                        "trial_period_days" => 30
+                                                    );
+                                                    //create new plan
+                                                    $plan = $new_plan->createPlan($plan_data);
+
+
+                                                    if (isset($plan['id'])) {
+                                                        //create new subscription
+                                                        $sub = new Stripe();
+                                                        $sub->url .= 'subscriptions';
+                                                        $data = array(
+                                                            "plan" => $plan_id,
+                                                            "customer" => $customer['id'],
+                                                            "trial_period_days" => 30
+                                                        );
+                                                        $response = $sub->subscription($data);
+                                                        if (isset($response['id'])) {
+
+															$userToApi['user_subscription'] = $response;
+															$thirdApi = new sendStripeData();
+															$customerSend = $thirdApi->sendCustomerPayment('user/stripe_update', $userToApi);
+
+                                                            //desctroy Stripe subscription session
+                                                            if($mFunnel == 'N') {
+                                                                unset($_SESSION['pp_users']);
+                                                            }
+                                                            //redirect if Payment Successfully
+                                                            ?>
+                                                            <script type="text/javascript">
+                                                                var base_url = "<?php echo get_site_url(); ?>";
+                                                                var uri = "<?php echo $redirect; ?>";
+                                                                window.location.href = base_url + uri;
+                                                            </script>
+                                                            <?php
+
+
+                                                        } else {
+
+                                                            //if payment fals ->>>> do log #response
+                                                            //
+                                                        }
+
+                                                    }
+
+
+                                                } else {
+
+                                                    // if plan exist
+                                                    if (isset($check_plan['id'])) {
+                                                        $sub = new Stripe();
+                                                        $sub->url .= 'subscriptions';
+                                                        $data = array(
+                                                            "plan" => $check_plan['id'],
+                                                            "customer" => $customer['id'],
+                                                            "trial_period_days" => 30
+                                                        );
+                                                        $response = $sub->subscription($data);
+
+
+
+
+                                                        if (isset($response['id'])) {
+
+															//send customer data to API
+															$userToApi['user_subscription'] = $response;
+
+															$thirdApi = new sendStripeData();
+															$customerSend = $thirdApi->sendCustomerPayment('user/stripe_update', $userToApi);
+
+                                                            //desctroy Stripe subscription session
+                                                            if($mFunnel == 'N') {
+                                                                unset($_SESSION['pp_users']);
+                                                            }
+                                                            //if payment Successfully
+                                                            ?>
+                                                            <script type="text/javascript">
+                                                                var base_url = "<?php echo get_site_url(); ?>";
+                                                                var uri = "<?php echo $redirect; ?>";
+                                                                window.location.href = base_url + uri;
+                                                            </script>
+                                                            <?php
+
+                                                        } else {
+                                                            //if payment fals ->>> do log file or message $response
+
+                                                        }
+                                                    }
+                                                }
+
+
+                                            }
+                                        }
+
+
+                                    }
+
+
+                                }
+                            }
+
+
+
+
+
+                            //multiple page One Time Payment
+                            if (isset($_POST['onetime_amount'])) {
+                                $payAmount = intval($_POST['onetime_amount']);
+                                $mRedirect = htmlspecialchars($_POST['onetime_redirect']);
+
+                                $payDesc = htmlspecialchars($_POST['onetime_desc']);
+                                //create customer
+                                $cus = new Stripe();
+                                $cus->url .= 'customers';
+                                $cus->fields['email'] = $_POST['stripeEmail'];
+                                $cus->fields['source'] = $_POST['stripeToken'];
+                                $customer = $cus->call();
+
+                                //create payment request
+                                $pay = new Stripe();
+                                $pay->url .= 'charges';
+                                $param = array(
+                                    'amount' => $payAmount,
+                                    'currency' => 'usd',
+                                    'customer' => $customer['id'],
+                                    'description' => $payDesc
+                                );
+                                $charge = $pay->charge($param);
+                                if ($charge['status'] == 'succeeded') {
+                                    //log error Payment OK ->>> And send API Request with payment parameters
+                                    ?>
+                                    <script type="text/javascript">
+                                        var base_url = "<?php echo get_site_url(); ?>";
+                                        var uri = "<?php echo $mRedirect; ?>";
+                                        window.location.href = base_url + uri;
+                                    </script>
+                                    <?php
+
+                                }
+                            }
+                        }
+                    }
+                    add_action( 'init', 'strip_request_catch' );
+
+
+
+                    /*admin panel styles*/
 function wpdocs_enqueue_custom_admin_style() {
 
    // wp_enqueue_style( 'my-style', get_template_directory_uri() . '/style.css');

@@ -11,19 +11,13 @@ class sendStripeData {
         $data_json = json_encode($param);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_HTTPHEADER,array('X-Token:014a8a7d49734c5fb838b2ca617b0275'));
-        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','X-Token:014a8a7d49734c5fb838b2ca617b0275'));
+       // curl_setopt($ch, CURLOPT_HTTPHEADER,array('X-Token:014a8a7d49734c5fb838b2ca617b0275'));
+       // curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response  = curl_exec($ch);
         curl_close($ch);
         return $response;
-        die();
-        if($response){
-            return true;
-        } else {
-            return false;
-        }
     }
 }
